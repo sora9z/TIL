@@ -2,6 +2,6 @@
 
 ---
 
-[Node](#Node)
+[Node](./Node)
 
-[Web](#Web)
+[Web](./Web)
