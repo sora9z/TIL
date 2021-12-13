@@ -15,7 +15,7 @@ Visibility: Public
     Node.js는 로컬 환경에서 JavaScript를 실행할 수 있는 자바스크립트 런타임 이다.
     **런타임이란?**
 
-        Wikipedia에 따르면 , "In computer science, runtime, run time, or execution time is the final phase of a computer program's life cycle, in which the **code is being executed** on the computer's central processing unit as machine code." 이라고 한다.  간단하게 해석을 해보면 CPU 에서 기계어 코드가 실행되고 있는 단계하고 보면 될 것 같다. 이해하기 어렵지만, 간단히 말해서 프로그래밍 언어가 구동되는 환경 이라고 이해를 하면 된다. JavaScript에서 Web Browser에서 구동되는 경우가 있고 로컬에서 Node.js로 구동되는 경우가 있는데, 여기서 Browser와 Node.js를 런타임 이라고 한다.
+Wikipedia에 따르면 , "In computer science, runtime, run time, or execution time is the final phase of a computer program's life cycle, in which the **code is being executed** on the computer's central processing unit as machine code." 이라고 한다. 간단하게 해석을 해보면 CPU 에서 기계어 코드가 실행되고 있는 단계하고 보면 될 것 같다. 이해하기 어렵지만, 간단히 말해서 프로그래밍 언어가 구동되는 환경 이라고 이해를 하면 된다. JavaScript에서 Web Browser에서 구동되는 경우가 있고 로컬에서 Node.js로 구동되는 경우가 있는데, 여기서 Browser와 Node.js를 런타임 이라고 한다.
 
 Node.js에 대해 알아보기 위해 Node.js 공식 사이트를 방문해보았다.
 
