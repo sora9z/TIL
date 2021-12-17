@@ -22,7 +22,7 @@ Chapter: Linux
   **Overview**
   Linux의 파일 또는 폴더는 단일 사용자와 단일 그룹이 소유하고 고유한 엑세스 권한이 있다. Terminal에 node로 js파일 한 개와 directory 를 한개 만들고 ls-l을 입력하면 아래와 같이 출력되는 것을 볼 수 있다.
 
-```c
+```bash
 -rw-r--r--  1 gangsola  staff    33B 12 11 15:33 helloworld.js
 drwxr-xr-x  2 gangsola  staff    64B 12 11 15:35 test/
 ```
@@ -78,48 +78,59 @@ drwxr-xr-x  2 gangsola  staff    64B 12 11 15:35 test/
   - chown 과 비슷하게 현재 사용자는 ALLOBJ 이라는 특수 권한이 있어야 하고 현재 그룹이 작업의 1차 그룹이거나 작업의 보충 그룹 중 하나여야 한다.
   - 또한, 변경 하려는 그룹에 대한 USE 권한이 있어야 한다.
 - chmod [참고](https://www.ibm.com/docs/ko/i/7.3?topic=directories-chmod) - 파일 모드 변경
+
   - **chmod [ -R [-H | -L | -P] ] [ -h ]** *mode file*
   - OS에 로그인한 사용자와 폴더나 파일의 소유자가 같은 경우 권한 변경 가능
   - 같지 않은 경우에는 " sudo " 를 사용하여 관리자 권한 획득 명령어를 통해 폴더나 파일의 권한을 변경할 수 있다.
   - 권한을 변경하는 방법
+
     - Symbolic method
       - relative method 라고도 불린다
       - +,-,=, Access type을 표기하여 변경한다(모두 한 글자의 단일 문자로 표기)
       - Access Class, Operator, Access Type 세 부분으로 구성된다.
-      | Access class       | Operator            | Access Type |
-      | ------------------ | ------------------- | ----------- |
-      | u(user)            | +(add access)       | r(read)     |
-      | g(group)           | -(remove access)    | w(write)    |
-      | o(other)           | =(set exact access) | x(execute)  |
-      | a(all : u,g and o) |                     |             |
+        | Access class | Operator | Access Type |
+        | ------------------ | ------------------- | ----------- |
+        | u(user) | +(add access) | r(read) |
+        | g(group) | -(remove access) | w(write) |
+        | o(other) | =(set exact access) | x(execute) |
+        | a(all : u,g and o) | | |
     - 예시
-    ```c
-    chmod a+r filename // 모든 class에 read 권한 추가
 
-    chmod +r filename // class를 생략하면 default로 all이 적용된다
+    ```bash
+    chmod a+r filename
+    # 모든 class에 read 권한 추가
 
-    chmod go-rw filename // 다수의 class 명시 가능. group과 other class에 읽기, 쓰기 권한 remove
+    chmod +r filename
+    # class를 생략하면 default로 all이 적용된다
 
-    chmod a-w+r filename // Operator를 여러 개 사용 가능하며 한 줄로 권한을 삭제하고 더할 수 있다.
+    chmod go-rw filename
+    # 다수의 class 명시 가능. group과 other class에 읽기, 쓰기 권한 remove
 
-    chmod go=r filename // = 연산자를 사용하여 group과 other 사용자의 권한을 명시적으로 명시할 수 있다.
+    chmod a-w+r filename
+    # Operator를 여러 개 사용 가능하며 한 줄로 권한을 삭제하고 더할 수 있다.
 
-    chmod -R o+x dirname // -R을 옵션을 추가하여 지정된 directory에서 하위 directory의 권한을 재귀적으로 변경할 수 있다.
+    chmod go=r filename
+    # = 연산자를 사용하여 group과 other 사용자의 권한을 명시적으로 명시할 수 있다.
+
+    chmod -R o+x dirname
+    # -R을 옵션을 추가하여 지정된 directory에서 하위 directory의 권한을 재귀적으로 변경할 수 있다.
     ```
-    ** Home directory에서 권한을 설정할 때에는 조심해야한다 **
-    - Absolute form
-    Absolute form은 숫자 7까지 나타내는 3bits의 합으로 표기한다. 사용자, 그룹, 또는 다른 사용자나 그룹마다 rwx가 나타나고 각 영역의 boolean 값으로 표기할 수 있다.
-    | Permission | Number |
-    | ---------- | ------ |
-    | r          | 4      |
-    | w          | 2      |
-    | x          | 1      |
 
-```c
-// 사용자 -> r,e,x 부여 (4+2+1) , group -> r,x 권한 부여 (4+1) , other -> x 궈한 부여 (1)
+    ** Home directory에서 권한을 설정할 때에는 조심해야한다 **
+
+    - Absolute form
+      Absolute form은 숫자 7까지 나타내는 3bits의 합으로 표기한다. 사용자, 그룹, 또는 다른 사용자나 그룹마다 rwx가 나타나고 각 영역의 boolean 값으로 표기할 수 있다.
+      | Permission | Number |
+      | ---------- | ------ |
+      | r | 4 |
+      | w | 2 |
+      | x | 1 |
+
+```bash
+#사용자 -> r,e,x 부여 (4+2+1) , group -> r,x 권한 부여 (4+1) , other -> x 궈한 부여 (1)
 chmod 751 filename
 
-chmod 700 // 현재 directory에 r,w,x 권한을 부여
+chmod 700 # 현재 directory에 r,w,x 권한을 부여
 
 ```
 
