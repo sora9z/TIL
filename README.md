@@ -12,6 +12,8 @@
 
 - [Dynamic Programming - Fibonacci](./Algorithm/Algorithm-DynamcProgrammin-Fibonacci)
 
+- [Dynamic Programming - About Dynamic programming ](./Algorithm/DynamicProgramming-About_DynamicProgramming)
+
 - [Greedy Algorithm](./Algorithm/Algorithm-GreedyAlgorithm)
 
 [ETC](./ETC)
