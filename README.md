@@ -12,6 +12,8 @@
 
 - [Dynamic Programming - Fibonacci](./Algorithm/Algorithm-DynamcProgrammin-Fibonacci)
 
+- [Dynamic Prpgramming - 0-1Knapsack Problem](./Algorithm/DP_Knapsack_Problem.ipynb)
+
 - [Dynamic Programming - About Dynamic programming ](./Algorithm/DynamicProgramming-About_DynamicProgramming)
 
 - [Greedy Algorithm](./Algorithm/Algorithm-GreedyAlgorithm)
