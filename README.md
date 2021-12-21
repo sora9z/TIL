@@ -18,6 +18,8 @@
 
 - [Greedy Algorithm](./Algorithm/Algorithm-GreedyAlgorithm)
 
+- [중복순열 가위바위보](./Algorithm/Algorithm-중복순열-RockPaperScissors)
+
 [ETC](./ETC)
 
 - [서버 확장 방법과MAU_DAU_MC](./ETC/서버확장방법과MAU_DAU_MC.md)
