@@ -2,24 +2,11 @@
 
 ---
 
-[Retrospective](./00_Retrospective)
+- [Retrospective](./00_Retrospective)
 
-- [2021](./00_Retrospective/2021)
+- [Algorithm](./Algorithm)
 
-[Algorithm](./Algorithm)
-
-- [TOY- 17](./Algorithm/Toy_17_getBracketObjects.md)
-- [Dynamic Programming - Fibonacci](./Algorithm/Algorithm-DynamcProgrammin-Fibonacci)
-- [Dynamic Prpgramming - 0-1Knapsack Problem](./Algorithm/DP_Knapsack_Problem.ipynb)
-- [Dynamic Programming - About Dynamic programming ](./Algorithm/DynamicProgramming-About_DynamicProgramming)
-- [Greedy Algorithm](./Algorithm/Algorithm-GreedyAlgorithm)
-- [중복순열 가위바위보](./Algorithm/Algorithm-중복순열-RockPaperScissors)
-
-[DATABASE](./DATABASE)
-
-- [Database-SQL기본-DDL](./DATABASE/Database-SQL기본-DDL.md)
-- [Database-SQL기본-DML-INSERT-DELETE-UPDATE](./DATABASE/Database-SQL기본-DML-INSERT-DELETE-UPDATE.md)
-- [Database-SQL기본-DML-JOIN](./DATABASE/Database-SQL기본-DML-JOIN.md)
+- [DATABASE](./DATABASE)
 
 [ETC](./ETC)
 
