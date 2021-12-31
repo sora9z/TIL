@@ -4,9 +4,9 @@
 
 - [Retrospective](./00_Retrospective)
 
-- [Algorithm](./Algorithm)
+- [Algorithm](./Algorithm/README.md)
 
-- [DATABASE](./DATABASE)
+- [DATABASE](./DATABASE/README.md)
 
 [ETC](./ETC)
 
@@ -22,9 +22,9 @@
 
 - [Java&SpringBoot-JAVA기초문법-자료형](./JAVA/Java&SpringBoot_JAVA기초문법_자료형.md)
 
-[Node](./Node)
+[Node](./Node/README.md)
 
-[Operating System](./OS)
+[Operating System](./OS/README.md)
 
 [Web](./Web)
 
