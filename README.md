@@ -24,9 +24,6 @@
 
 [Node](./Node)
 
-- [About Node.JS](./Node/About_NodeJS)
-- [Node.JS Asynchronous](<./Node/Node-비동기(Asynchronous)>)
-
 [Operating System](./OS)
 
 - [Process Structure](./OS/Process_Structure)
