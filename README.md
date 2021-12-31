@@ -26,10 +26,6 @@
 
 [Operating System](./OS)
 
-- [Process Structure](./OS/Process_Structure)
-- [Process Structure와 Stackoverflow](./OS/OS_Process_Stackoverflow)
-- [Process Structure PCB](./OS/Process_Structure_PCB)
-
 [Web](./Web)
 
 - [Distrubution-Build&Distrubution](./Web/Distrubution-Build&Distrubution.md)
