@@ -7,6 +7,7 @@
 - [Algorithm](./Algorithm/README.md)
 
 - [DATABASE](./DATABASE/README.md)
+- [DESIGN PATTERN](./Design-Pattern)
 
 [ETC](./ETC)
 
