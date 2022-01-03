@@ -4,3 +4,4 @@
 - [NODE JS에서 SQL 사용하기](./Nodejs에서SQL사용하기.md)
 - [SQL-Transaction&ACID](./SQL-Transaction&ACID.md)
 - [DATABASE-Normalization-Intro](./DATABASE-Normalization-Intro.md)
+- [DATABASE-SQL-MYSQL](./DATABASE-SQL-MYSQL.md)
