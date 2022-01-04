@@ -138,3 +138,28 @@ const mergeSort = function (arr) {
 let output = mergeSort([3, 1, 21]);
 console.log(output); // --> [1, 3, 21]
 ```
+
+</br>
+### 3. 시간복잡도 계산</br></br>
+
+병합정렬은 재귀적인 방법을 사용하여 하위 단계로 내려간다. 길이가 n인 배열을 두 개의 배열로 분할하고, 그 다음 단계에서는 분할한 각 배열을 다시 2개의 배열로 분할하여 내려간다.
+
+첫 번째 단계를 depth 0으로 하고 하위 단계로 내려갈수록 depth가 1씩 늘어난다고 하자.
+
+- 전체 시간 복잡도를 계산하기 위해 먼저 각 단계에서의 시간복잡도를 구해보자</br>
+  - 단계별로 실핸하는 연산은 한 개의 배열을 2개로 나누는 split 연산과 그 결과를 다시 병합하는 merge 연산으로 이루어진다.</br></br>
+  - split 연산은 다음 단계로 내려가는 연산이므로 현재 단계에서는 merge 연산의 시간복잡도만을 생각한다.
+    - depth=0에서 merge는 left 와 right 만을 merge 하므로 O(n)이다
+    - depth=1에서 merge는 depth=0에서 나눈 size가 n/2인 left와 right에서 각각 merge 연산이 이루어진다. node = 2개 , 노드당 배열의 길이 n/2 O(n/2) + O(n/2) = O(n)
+    - depth=2에서는 depth =1에서 나눈 size가 n/4인 2개의 left와 2개의 right에서 각각 merge 연산이 이루어진다. node = 4개 , 노드당 배열의 길이 n/4 , O(n/4) + O(n/4) + O(n/4) + O(n/4) = O(n)
+      → 즉 , depth가 i인 단계에서 node는 $2^i$ 개가 있고, 각 node에서 연산 할 배열의 길이는 $n/2^i$ 이다.
+      전체 merge 시간복잡도는 $2^i$ x $n/2^i$ = O(n)이 된다.</br></br>
+  - 이제 재귀가 몇 개 만들어지는지. 즉, split 연산은 얼마나 하는지를 생각해보자!
+    - split 함수를 살펴보면 길이가 1일 때 재귀는 종료된다.
+    - 즉, $n * 1/2^i =1$ 이 될 떄까지 depth가 생긴다.
+    - 위의 공식을 계산해보면, $log_2n = i$ 를 얻을 수 있다.
+    - n=8인 경우 i=3인 depth가 나온다.
+      → 단계는 항상 $log_2n$ 개만큼 만들어진다.
+  ### → split 함수 내부에서 merge 함수를 호출하므로 최종 시간 복잡도는 O(n)\*O(logn) = O(nlogn)이 된다.
+
+![https://cdn.kastatic.org/ka-perseus-images/5fcbebf66560d8fc490de2a0d8a0e5b1d65c5c54.png](https://cdn.kastatic.org/ka-perseus-images/5fcbebf66560d8fc490de2a0d8a0e5b1d65c5c54.png)
