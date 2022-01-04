@@ -5,3 +5,4 @@
 - [Dynamic Programming - About Dynamic programming ](./DynamicProgramming-About_DynamicProgramming)
 - [Greedy Algorithm](./Algorithm-GreedyAlgorithm)
 - [중복순열 가위바위보](./Algorithm-중복순열-RockPaperScissors)
+- [분할정복-병합정렬](./Algorithm-mergeSort-병합정렬.md)
