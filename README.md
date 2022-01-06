@@ -19,9 +19,7 @@
 - [환경변수 - Environment Variable](./Linux/Environment-Variables.md)
 - [Linux 에서 문제를 찾아내는 방법 -cat, awk, sort, uniq, tail, head, greb](./Linux/Linux_cat_awk_sort_uniq_tail_head_greb)
 
-[JAVA](./JAVA)
-
-- [Java&SpringBoot-JAVA기초문법-자료형](./JAVA/Java&SpringBoot_JAVA기초문법_자료형.md)
+[JAVA](./JAVA/README.md)
 
 [Node](./Node/README.md)
 
