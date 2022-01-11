@@ -2,12 +2,13 @@
 
 ---
 
-- [Retrospective](./00_Retrospective)
+[Retrospective](./00_Retrospective)
 
-- [Algorithm](./Algorithm/README.md)
+[Algorithm](./Algorithm/README.md)
 
-- [DATABASE](./DATABASE/README.md)
-- [DESIGN PATTERN](./Design-Pattern)
+[DATABASE](./DATABASE/README.md)
+
+[DESIGN PATTERN](./Design-Pattern)
 
 [ETC](./ETC)
 
