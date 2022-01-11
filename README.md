@@ -25,8 +25,4 @@
 
 [Operating System](./OS/README.md)
 
-[Web](./Web)
-
-- [Distrubution-Build&Distrubution](./Web/Distrubution-Build&Distrubution.md)
-- [Distrubution-SSR VS CSR](./Web/Distrubution-SSR&CSR.md)
-- [Process Structure](./OS/Process_Structure)
+[Web](./Web/README.md)
