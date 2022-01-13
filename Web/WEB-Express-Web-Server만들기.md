@@ -31,7 +31,7 @@ http.createServer 를 통해 listen 하는 것의 차이도 같이 알아보았�
 - express를 사용할 것이므로 express를 필수이다.
 - [nodemon](https://www.npmjs.com/package/nodemon)은 서버 코드가 변경될 때마다 자돌으로 restart를 해주는 module이다. script start에 node대신 nodemon을넣어주면 서버를 다시 끄지 않아도 되어 편리하다.
 - [morgan](https://github.com/expressjs/morgan) : 로그를 관리하기 위해 HTTP request logger middleware를 사용하였다. 이 모듈에 대한 사용 법은 [이곳](https://www.notion.so/Nodejs-Module-debug-e5bec35bc0cf4eb5b3eee351b1b4881e) 에 정리를 해두었다.
-- [debug](https://www.npmjs.com/package/debug) : node 실행 시 지정한 log만을 선택하여 볼 수 있다. decorated version의 console.error라고 한다. 이 모듈에 대해 사용법은 [이곳](https://www.notion.so/Nodejs-Module-debug-e5bec35bc0cf4eb5b3eee351b1b4881e)에 정리를 해두었다.
+- [debug](https://www.npmjs.com/package/debug) : node 실행 시 지정한 log만을 선택하여 볼 수 있다. decorated version의 console.error라고 한다. 이 모듈에 대해 사용법은 [이곳](..//Node/Nodejs-Module-debug.md)에 정리를 해두었다.
 
 ## 2. Http Server 구조를 살펴보자 ( http server main)
 
