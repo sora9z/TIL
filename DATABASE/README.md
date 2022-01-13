@@ -5,3 +5,4 @@
 - [SQL-Transaction&ACID](./SQL-Transaction&ACID.md)
 - [DATABASE-Normalization-Intro](./DATABASE-Normalization-Intro.md)
 - [DATABASE-SQL-MYSQL](./DATABASE-SQL-MYSQL.md)
+- [DATABASE-Sequelize-환경변수사용하기](./DATABASE-Sequelize-환경변수사용하기.md)
