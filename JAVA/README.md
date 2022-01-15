@@ -2,3 +2,5 @@
 - [Java&SpringBoot-JAVA14-Switch-Expression비교](./Java&SpringBoot-JAVA14-Switch-Expression비교.md)
 - [Java&SpringBoot-ObjectOriented-Class](./Java&SpringBoot-ObjectOriented-Class.md)
 - [Java&SpringBoot-StringObject](./Java&SpringBoot-StringObject.md)
+- [Java&SpringBoot-정보은닉화\_캡슐화\_this_static](./Java&SpringBoot-정보은닉화_캡슐화_this_static/Java&SpringBoot-정보은닉화_캡슐화_this_static.md)
+- [Java&SpringBoot-Singleton-Design-pattern](./Java&SpringBoot-Singleton-Design-pattern.md)
