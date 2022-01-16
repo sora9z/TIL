@@ -6,3 +6,5 @@
 - [DATABASE-Normalization-Intro](./DATABASE-Normalization-Intro.md)
 - [DATABASE-SQL-MYSQL](./DATABASE-SQL-MYSQL.md)
 - [DATABASE-Sequelize-환경변수사용하기](./DATABASE-Sequelize-환경변수사용하기.md)
+- [DATABASE-NOSQL-MongoDB-lesson정리-Basic](./DATABASE-NOSQL-MongoDB-lesson정리-Basic.md)
+- [DATABASE-NOSQL-MongoDB-lesson정리-CRUD](./DATABASE-NOSQL-MongoDB-lesson정리-CRUD.md)
