@@ -5,3 +5,4 @@
 - [Java&SpringBoot-정보은닉화\_캡슐화\_this_static](./Java&SpringBoot-정보은닉화_캡슐화_this_static/Java&SpringBoot-정보은닉화_캡슐화_this_static.md)
 - [Java&SpringBoot-Singleton-Design-pattern](./Java&SpringBoot-Singleton-Design-pattern.md)
 - [Java&SpringBoot-Array,Array-Object,ArrayList](./Java&SpringBoot-Array,Array-Object,ArrayList.md)
+- [Java&SpringBoot-상속(Inheritance),형변환,재정의,가상함수](./Java&SpringBoot-상속_형변환_재정의_가상함수.md)
