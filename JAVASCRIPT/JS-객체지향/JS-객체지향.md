@@ -19,7 +19,7 @@ JavaScript는 Prototype 기반 언어(Prototype-based Language)이다. 모든 �
 - `__proto__` **:** prototype \***\*link
   **상위에서 물려받은 객체의 프로토타입에 대한 정보\*\* 이다.
 
-![Untitled](%5BJS%20Node%5D%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%20%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20Javascript%20ab7ff2546ad54d97b4e5f527b9530689/Untitled.png)
+![Untitled](./img/Untitled.png)
 
 <**예제>**
 
@@ -99,6 +99,6 @@ console.log(A.prototype.x)
    */
    ```
 
-   ![Untitled](%5BJS%20Node%5D%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%20%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20Javascript%20ab7ff2546ad54d97b4e5f527b9530689/Untitled%201.png)
+   ![Untitled](./img/Untitled%201.png)
 
 ---
