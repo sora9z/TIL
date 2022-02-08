@@ -5,3 +5,5 @@
 - [OS-IPC-pipe_msgQueue_sharedMem](./OS-IPC-pipe_msgQueue_sharedMem)
 - [CS-IPC기법들-Signal&Socket](./CS-IPC기법들-Signal&Socket/CS-IPC기법들-Signal&Socket.md)
 - [OS-Process정리](./OS-Process정리/OS-Process정리.md)
+- [Codestates-CS-OperatingSystem](./Codestates-CS-OperatingSystem.md)
+- [OS-Thread개념](./OS-Thread개념.md)
