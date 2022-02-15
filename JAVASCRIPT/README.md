@@ -3,3 +3,4 @@
 - [JS-비동기Asynchronous](./JS-비동기Asynchronous/JS-비동기Asynchronous.md)
 - [JS-Callback](./JS-Callback/JS-Callback.md)
 - [JS-Regular-Expressions](./JS-Regular-Expressions/JS-Regular-Expressions.md)
+- [JS-Deep-Dive-ch13-Scope](./JS-Deep-Dive-ch13-Scope.md)
