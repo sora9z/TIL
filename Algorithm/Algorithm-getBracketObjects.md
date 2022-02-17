@@ -1,4 +1,4 @@
-# [Algorithm][codestates] Toy 17
+# 괄호의 짝 구하기
 
 Category: Algorithm & Data Structure
 Visibility: Public
@@ -7,7 +7,7 @@ Visibility: Public
 유형: Coding Test
 작성일시: 2021년 12월 15일 오후 10:55
 
-# Algorithm - Toy 17
+# Algorithm - 괄호의 짤 구하기
 
 ### 1. 문제
 

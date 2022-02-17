@@ -1,62 +1,53 @@
-# [Algorithm][Codestates]Toy24-RadixSort-기수정렬
+# 기수정렬
 
 Category: Algorithm & Data Structure
 Visibility: Public
-강의: CodeStates
-블로깅: Yes
 유형: Coding Test
 작성일시: 2022년 2월 10일 오후 8:33
 
-# Algorithm - Toy 24
+# Algorithm - 기수정렬
 
 ### 1. 기수정렬(Radix Sort)
 
 [참고](http://syllabus.cs.manchester.ac.uk/ugt/2019/COMP26120/SortingTool/radix_sort_info.html#:~:text=The%20time%20complexity%20of%20radix,base%2010%20for%20decimal%20representation.)
 
-기수 정렬 알고리즘은 최 하위 자릿수부터(digit) 시작하여 최 상위 자릿수 까지 자릿수 별로 정렬을 하는 알고리즘이다. 기수 정렬은 Counting 정렬을 Subroutine으로 사용하여 정렬한다.  Queue를 자료구조로 갖는 길이가 10인 배열을 사용하여 정렬한다. 이를 Bucket이라고 하자.
+기수 정렬 알고리즘은 최 하위 자릿수부터(digit) 시작하여 최 상위 자릿수 까지 자릿수 별로 정렬을 하는 알고리즘이다. 기수 정렬은 Counting 정렬을 Subroutine으로 사용하여 정렬한다. Queue를 자료구조로 갖는 길이가 10인 배열을 사용하여 정렬한다. 이를 Bucket이라고 하자.
 
 - 아래의 배열을 기수정렬로 정렬해보자
-    
-    Original Arr = [170 , 45 , 75 , 90 , 802 , 24 , 2 , 66] 
-    
-    Bucket = [Queue1, Queue2 ... Queue10]
-    
-    최 하위 자릿수는 1의 자리이다.  위의 배열에서 1의 자리만을 뽑으면 아래와 같을 것이다.
-    
-    [0, 5, 5, 0, 2, 4, 2, 6]
-    
+
+  Original Arr = [170 , 45 , 75 , 90 , 802 , 24 , 2 , 66]
+
+  Bucket = [Queue1, Queue2 ... Queue10]
+
+  최 하위 자릿수는 1의 자리이다. 위의 배열에서 1의 자리만을 뽑으면 아래와 같을 것이다.
+
+  [0, 5, 5, 0, 2, 4, 2, 6]
 
 - 자릿수 배열의 요소를 indx로 하고 Bucket[indx] Queue에 Original Arr의 요소를 넣는다.
-    
-    즉, Original Arr를 한 번 순회를 하면서 Bucek[0] 의 Queue에 170을 넣고 Bucket[5] Queue에  45, Bucket[5] Queue에 75...Bucket[6] Queue에 66을 넣는다.  이 Bucket에 있는 요소들을 순서대로 내열하면 아래와 같이  일의자리를 기준으로 오름차순 정렬이 되어있는 배열을 얻을 수 있다.
-    
-    [170, 90, 802, 2, 24, 45, 75, 66]
-    
+
+  즉, Original Arr를 한 번 순회를 하면서 Bucek[0] 의 Queue에 170을 넣고 Bucket[5] Queue에 45, Bucket[5] Queue에 75...Bucket[6] Queue에 66을 넣는다. 이 Bucket에 있는 요소들을 순서대로 내열하면 아래와 같이 일의자리를 기준으로 오름차순 정렬이 되어있는 배열을 얻을 수 있다.
+
+  [170, 90, 802, 2, 24, 45, 75, 66]
 
 - 위의 결과 배열을 다음 높은 자릿수를 기준으로 정렬을 한다 . (10의자릿수)
-    
-    결과는 아래와 같이 10의 자리를 기준으로 정렬된 배열을 출력한다. 이미 1의자리로 정렬을 했기 때문에 같은 10의자리 수인 경우는 이미 정렬이 되어있는 상태이다.
-    
-    [802, 2, 24, 45, 66, 170, 75, 90]
-    
-- 마지막으로  최대 자릿수인 100의 자리로 정렬을 하면 아래와 같은 전체 정렬된 결과를 얻을 수 있다.
-    
-    [2, 24, 45, 66, 75, 90, 170, 802]
-    
+  결과는 아래와 같이 10의 자리를 기준으로 정렬된 배열을 출력한다. 이미 1의자리로 정렬을 했기 때문에 같은 10의자리 수인 경우는 이미 정렬이 되어있는 상태이다.
+  [802, 2, 24, 45, 66, 170, 75, 90]
+- 마지막으로 최대 자릿수인 100의 자리로 정렬을 하면 아래와 같은 전체 정렬된 결과를 얻을 수 있다.
+  [2, 24, 45, 66, 75, 90, 170, 802]
 
 [참고영상](https://youtu.be/nu4gDuFabIM)
 
-Radix Sort의 시간 복잡도는 O(d*(n+b)) 이다. 여기서 d는 digit(자릿수)의 개수이고 n은 list의 요소 개수이다. b는 buckle size이다. 
+Radix Sort의 시간 복잡도는 O(d\*(n+b)) 이다. 여기서 d는 digit(자릿수)의 개수이고 n은 list의 요소 개수이다. b는 buckle size이다.
 
 ### 2 구현
 
-구현은 아래와 같이 구현하였다. 
+구현은 아래와 같이 구현하였다.
 
-확인을 해보니 이미 나와있는 코드와는 조금 다르게 작성되었다. 
+확인을 해보니 이미 나와있는 코드와는 조금 다르게 작성되었다.
 
- Ref Code와의 차이점은 Ref code는 counting Sort를 사용하여 정렬을 하였고 내가 작성한 code는 직접 자리수의 숫자를 추출하고 자료구조 Queue 배열을 사용하였다는 점에서 조금 다르다고 생각한다. 
+Ref Code와의 차이점은 Ref code는 counting Sort를 사용하여 정렬을 하였고 내가 작성한 code는 직접 자리수의 숫자를 추출하고 자료구조 Queue 배열을 사용하였다는 점에서 조금 다르다고 생각한다.
 
-counting sort는 중복되는 것의 누적수를 통해 저장되는 index를 찾고, Queue배열을 이용한 방법은 배열의 인덱스를 사용하여 index를 찾는다. 
+counting sort는 중복되는 것의 누적수를 통해 저장되는 index를 찾고, Queue배열을 이용한 방법은 배열의 인덱스를 사용하여 index를 찾는다.
 
 ```jsx
 // max digit 값을 return 하는 method
@@ -144,7 +135,7 @@ function radixSort(arr) {
 }
 ```
 
-레퍼런스 코드 
+레퍼런스 코드
 
 ```jsx
 function getMax(arr) {
