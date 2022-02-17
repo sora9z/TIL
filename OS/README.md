@@ -6,6 +6,7 @@
 - [OS-Thread동기화이슈](./OS-Thread동기화이슈/OS-Thread동기화이슈.md)
 - [Process Structure](./Process_Structure)
 - [Process Structure PCB](./Process_Structure_PCB)
+- [OS-Virtual-Memory-System의이해](./OS-Virtual-Memory-System의이해/OS-Virtual-Memory-System의이해.md)
 - [Codestates-CS-OperatingSystem](./Codestates-CS-OperatingSystem.md)
 - [OS-Thread-Deadlock&Starvation](./OS-Thread-Deadlock&Starvation.md)
 - [OS-Thread-Semaphore](./OS-Thread-Semaphore.md)
