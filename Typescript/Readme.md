@@ -1,2 +1,3 @@
-- [TS-기본타입정리](./TS-기본타입정리.md)
-- [TS-OOP-programming하기](./TS-OOP-programming하기.md)
+- [2022-02-16-TS-기본타입정리](./2022-02-16-TS-기본타입정리.md)
+- [2022-02-20-TS-OOP-programming하기](./2022-02-20-TS-OOP-programming하기.md)
+- [20210224-TS-OOP-Practice-Stack](./20210224-TS-OOP-Practice-Stack.md)
