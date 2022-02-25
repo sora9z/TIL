@@ -28,4 +28,6 @@
 
 [Operating System](./OS/README.md)
 
+[TypeScript](./Typescript/Readme.md)
+
 [Web](./Web/README.md)
