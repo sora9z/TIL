@@ -8,6 +8,8 @@
 
 [AWS](./AWS/README.md)
 
+[Bugs](./Bugs/README.md)
+
 [DATABASE](./DATABASE/README.md)
 
 [DESIGN PATTERN](./Design-Pattern)
