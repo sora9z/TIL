@@ -21,7 +21,7 @@ Docker에 대해 공부한 내용 정리
     
     [그림출처](https://www.docker.com/resources/what-container)
     
-    ![Untitled](Docker%20%E1%84%80%E1%85%B5%E1%84%8E%208350e/Untitled.png)
+    ![Untitled](./img/Untitled.png)
     
 
 - 컨테이너란, 프로세스가 격리된 공간에서 동작하게 하는 기술이다. VM와 같이 OS를 가상화 하는 것이 아니라, 단순히 프로세스를 격리하는 방식을 사용한다.
