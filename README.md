@@ -2,34 +2,32 @@
 
 ---
 
-[Retrospective](./00_Retrospective)
+1. [Retrospective](./00_Retrospective)
 
-[Algorithm](./Algorithm/README.md)
+2. [Algorithm](./Algorithm/README.md)
 
-[AWS](./AWS/README.md)
+3. [AWS](./AWS/README.md)
 
-[Bugs](./Bugs/README.md)
+4. [Bugs](./Bugs/README.md)
 
-[DATABASE](./DATABASE/README.md)
+5. [DATABASE](./DATABASE/README.md)
 
-[DESIGN PATTERN](./Design-Pattern)
+6. [DESIGN PATTERN](./Design-Pattern)
 
-[ETC](./ETC)
+7. [DOCKER](./Docker/README.md)
 
-- [서버 확장 방법과MAU_DAU_MC](./ETC/서버확장방법과MAU_DAU_MC.md)
+8. [ETC](./ETC/README.md)
 
-[Linux](./Linux)
+9. [JAVA](./JAVA/README.md)
 
-- [사용자권한 - Permission](./Linux/Permission.md)
-- [환경변수 - Environment Variable](./Linux/Environment-Variables.md)
-- [Linux 에서 문제를 찾아내는 방법 -cat, awk, sort, uniq, tail, head, greb](./Linux/Linux_cat_awk_sort_uniq_tail_head_greb)
+10. [JAVASCRIPT](./JAVASCRIPT/README.md)
 
-[JAVA](./JAVA/README.md)
+11. [Linux](./Linux)
 
-[Node](./Node/README.md)
+12. [Node](./Node/README.md)
 
-[Operating System](./OS/README.md)
+13. [Operating System](./OS/README.md)
 
-[TypeScript](./Typescript/Readme.md)
+14. [TypeScript](./Typescript/Readme.md)
 
-[Web](./Web/README.md)
+15. [Web](./Web/README.md)
