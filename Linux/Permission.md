@@ -62,69 +62,104 @@ drwxr-xr-x  2 gangsola  staff    64B 12 11 15:35 test/
 
 ## 권한,소유권 수정
 
-- chown [참고](https://www.ibm.com/docs/ko/i/7.3?topic=directories-chown) 파일 소유권 변경
+### [chown](https://www.hostinger.com/tutorials/linux-chown-command/) 파일 소유권 변경
 
-  - **chown [-R [ -H | -L | -P ]] [ -h ]** *owner*[*:group*] *file*
-  - 파일 소유자를 소유자가 지정한 사용자 ID 또는 프로파일로 설정할 수 있으며, 파일의 그룹을 그룹이 지정한 ID 또는 프로파일로 설정할 수도 있다.
-  - 파일의 소유자를 변경하려면 ALLOBJ 라는 특수 권한이 있어야 하고, 현재 사용자가 소유자여야 한다.
-  - 파일의 그룹을 변경하려면 현재 사용자가 ALLOBJ라는 특수 권한을 갖고있어야 하며, 파일의 소유자이면서 아래 중 하나에 해당해야 한다
-    - 작업의 1차 그룹이 그룹이다.
-    - 작업의 보충 그룹 중 하나가 그룹이다.
-  - 현재 사용자는 새 사용자에 대한 USE 권한이 있어야 한다.
+**chown [OPTIONS] [USER] [:GROUP] filename(s)**
 
-- chgrp [참고](https://www.ibm.com/docs/ko/i/7.3?topic=directories-chgrp) - 파일 그룹 소유권 변경
-  - **chgrp [-R [ -H | -L | -P ]] [ -h ]** *group* *file*
-  - 파일의 그룹을 그룹이 지정한 그룹 ID 또는 프로파일로 설정할 수 있다.
-  - chown 과 비슷하게 현재 사용자는 ALLOBJ 이라는 특수 권한이 있어야 하고 현재 그룹이 작업의 1차 그룹이거나 작업의 보충 그룹 중 하나여야 한다.
-  - 또한, 변경 하려는 그룹에 대한 USE 권한이 있어야 한다.
-- chmod [참고](https://www.ibm.com/docs/ko/i/7.3?topic=directories-chmod) - 파일 모드 변경
+- Linux file들은 특정 사용자에게 소유되어있다.
+- chown 명령어는 file에 대한 소유권을 특정 username 으로 변경하거나 이전할 수 있다.
+- 파일의 소유자를 변경하려면 ALLOBJ 라는 특수 권한이 있어야 하고, 현재 사용자가 소유자여야 한다.
+- 현재 사용자는 새 사용자에 대한 USE 권한이 있어야 한다.
+- 예를 들면 아래의 명령어는 linuxfile를 file.ext의 소유자로 설정한다.
 
-  - **chmod [ -R [-H | -L | -P] ] [ -h ]** *mode file*
-  - OS에 로그인한 사용자와 폴더나 파일의 소유자가 같은 경우 권한 변경 가능
-  - 같지 않은 경우에는 " sudo " 를 사용하여 관리자 권한 획득 명령어를 통해 폴더나 파일의 권한을 변경할 수 있다.
-  - 권한을 변경하는 방법
+  ```bash
+  chown linuxfile file.ext
+  ```
 
-    - Symbolic method
-      - relative method 라고도 불린다
-      - +,-,=, Access type을 표기하여 변경한다(모두 한 글자의 단일 문자로 표기)
-      - Access Class, Operator, Access Type 세 부분으로 구성된다.
-        | Access class | Operator | Access Type |
-        | ------------------ | ------------------- | ----------- |
-        | u(user) | +(add access) | r(read) |
-        | g(group) | -(remove access) | w(write) |
-        | o(other) | =(set exact access) | x(execute) |
-        | a(all : u,g and o) | | |
-    - 예시
+- 아래의 명령어는 사용자와 그룹을 변경하는 명령어
 
-    ```bash
-    chmod a+r filename
-    # 모든 class에 read 권한 추가
+  ```bash
+  chwon whales:aquatic chwonSample.txt
+  ```
 
-    chmod +r filename
-    # class를 생략하면 default로 all이 적용된다
+- 그룹만 변경가능하다. 마치 chgrp과 비슷함
 
-    chmod go-rw filename
-    # 다수의 class 명시 가능. group과 other class에 읽기, 쓰기 권한 remove
+  ```bash
+  chwon :aquatic chwonSample.txt
+  ```
 
-    chmod a-w+r filename
-    # Operator를 여러 개 사용 가능하며 한 줄로 권한을 삭제하고 더할 수 있다.
+- Directory에도 동일하게 적용된다
 
-    chmod go=r filename
-    # = 연산자를 사용하여 group과 other 사용자의 권한을 명시적으로 명시할 수 있다.
+  ```bash
+  chwon whalse:aquatic /TestDir
+  ```
 
-    chmod -R o+x dirname
-    # -R을 옵션을 추가하여 지정된 directory에서 하위 directory의 권한을 재귀적으로 변경할 수 있다.
-    ```
+- Symbolic Link에서도 사용이 가능하다
+- -R 기호를 사용하면 재귀적인 사용이 가능하다
+- dir 내부에 있는 모든 Files와 dirs를 한 번에 바꿀 때 사용
 
-    ** Home directory에서 권한을 설정할 때에는 조심해야한다 **
+  ```bash
+  chown -R [USER][:GROUP] Directory
+  ```
 
-    - Absolute form
-      Absolute form은 숫자 7까지 나타내는 3bits의 합으로 표기한다. 사용자, 그룹, 또는 다른 사용자나 그룹마다 rwx가 나타나고 각 영역의 boolean 값으로 표기할 수 있다.
-      | Permission | Number |
-      | ---------- | ------ |
-      | r | 4 |
-      | w | 2 |
-      | x | 1 |
+### chgrp [참고](https://www.ibm.com/docs/ko/i/7.3?topic=directories-chgrp) - 파일 그룹 소유권 변경
+
+**chgrp [-R [ -H | -L | -P ]] [ -h ]** *group* *file*
+
+- 파일의 그룹을 그룹이 지정한 그룹 ID 또는 프로파일로 설정할 수 있다.
+- chown 과 비슷하게 현재 사용자는 ALLOBJ 이라는 특수 권한이 있어야 하고 현재 그룹이 작업의 1차 그룹이거나 작업의 보충 그룹 중 하나여야 한다.
+- 또한, 변경 하려는 그룹에 대한 USE 권한이 있어야 한다.
+
+### chmod [참고](https://www.hostinger.com/tutorials/vps/change-linux-permissions-and-owners) - 파일 모드 변경
+
+`chown [owner/group owner] [file name]`
+
+- 궈한과 소유자를 변경하는 명령어이다.
+- OS에 로그인한 사용자와 폴더나 파일의 소유자가 같은 경우 권한 변경 가능
+- 같지 않은 경우에는 " sudo " 를 사용하여 관리자 권한 획득 명령어를 통해 폴더나 파일의 권한을 변경할 수 있다.
+- 권한을 변경하는 방법
+
+  - Symbolic method
+    - relative method 라고도 불린다
+    - +,-,=, Access type을 표기하여 변경한다(모두 한 글자의 단일 문자로 표기)
+    - Access Class, Operator, Access Type 세 부분으로 구성된다.
+      | Access class | Operator | Access Type |
+      | ------------------ | ------------------- | ----------- |
+      | u(user) | +(add access) | r(read) |
+      | g(group) | -(remove access) | w(write) |
+      | o(other) | =(set exact access) | x(execute) |
+      | a(all : u,g and o) | | |
+  - 예시
+
+  ```bash
+  chmod a+r filename
+  # 모든 class에 read 권한 추가
+
+  chmod +r filename
+  # class를 생략하면 default로 all이 적용된다
+
+  chmod go-rw filename
+  # 다수의 class 명시 가능. group과 other class에 읽기, 쓰기 권한 remove
+
+  chmod a-w+r filename
+  # Operator를 여러 개 사용 가능하며 한 줄로 권한을 삭제하고 더할 수 있다.
+
+  chmod go=r filename
+  # = 연산자를 사용하여 group과 other 사용자의 권한을 명시적으로 명시할 수 있다.
+
+  chmod -R o+x dirname
+  # -R을 옵션을 추가하여 지정된 directory에서 하위 directory의 권한을 재귀적으로 변경할 수 있다.
+  ```
+
+  ** Home directory에서 권한을 설정할 때에는 조심해야한다 **
+
+  - Absolute form
+    Absolute form은 숫자 7까지 나타내는 3bits의 합으로 표기한다. 사용자, 그룹, 또는 다른 사용자나 그룹마다 rwx가 나타나고 각 영역의 boolean 값으로 표기할 수 있다.
+    | Permission | Number |
+    | ---------- | ------ |
+    | r | 4 |
+    | w | 2 |
+    | x | 1 |
 
 ```bash
 #사용자 -> r,e,x 부여 (4+2+1) , group -> r,x 권한 부여 (4+1) , other -> x 궈한 부여 (1)
@@ -139,3 +174,7 @@ chmod 700 # 현재 directory에 r,w,x 권한을 부여
 [An Introduction to Linux Permissions | DigitalOcean](https://www.digitalocean.com/community/tutorials/an-introduction-to-linux-permissions)
 
 [Manage file permissions on Unix-like systems](https://kb.iu.edu/d/abdb)
+
+```
+
+```
