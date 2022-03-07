@@ -58,7 +58,7 @@ log를 보는 것은 매우 중요하다. 어떤 Error나 문제가 발생했을
 
 ![Untitled](./imgs/Untitled4.png)
 
-- 여러 압축 파일을 보고 싶다면 zcat < 압축파일1 < 압축파일2 ...< ..
+- 여러 압축 파일을 보고 싶다면 zcat < 압축파일1 <br 압축파일2 ...<br ..
 
 ![Untitled](./imgs/Untitled5.png)
 
@@ -69,18 +69,21 @@ log를 보는 것은 매우 중요하다. 어떤 Error나 문제가 발생했을
 ![Untitled](./imgs/Untitled6.png)
 
 - 파일에 append 하는 방법
-  echo "hello" >> filename
-  echo "hello" | tee -a filename
+
+  - echo "hello" >> filename</br>
+    ![Untitled](./imgs/Untitled17.png)
+
+  - echo "hello" | tee -a filename
 
 ![Untitled](./imgs/Untitled7.png)
 
-만약 표준 입출력에 출력되지 않게 하려면 tee의 맨 마지막에 널 디바이스인 /dev/null을 견결해주면 된다.
+만약 표준 입출력에 출력되지 않게 하려면 tee의 맨 마지막에 널 디바이스인 /dev/null을 연결해주면 된다.
 
 여기서 의아한 것이 굳이 tee을 사용하여 appen를 하는 이유는 무엇이 좋을까 ??
 
-shell 에서 출력을 redirection (연산 결과를 임의로 다른 장치로 보내는 것) 할 경우 sudo를 해도 일반 사용자로 전환되므로 root 권한으로 파일에 쓰거나 내용을 추가한느 경우 제대로 동작하지 않는다. sudo echo로 root 소유인 파일에 시도를 하면 "permission denide" 라는 error가 나고 내용 추가에 실패한다.
+shell 에서 출력을 redirection (연산 결과를 임의로 다른 장치로 보내는 것) 할 경우 sudo를 해도 일반 사용자로 전환되므로 root 권한으로 파일에 쓰거나 내용을 추가한느 경우 제대로 동작하지 않는다. </br>sudo echo로 root 소유인 파일에 시도를 하면 "permission denide" 라는 error가 나고 내용 추가에 실패한다.
 
-tee는 shell script에서 root 권한으로 특정 파일을 쓰거나 appen할 떄 주로 사용되므로 이런 경우에는 echo를 받아서 sudo tee를 하면 정삭적으로 동작한다.
+tee는 shell script에서 root 권한으로 특정 파일을 쓰거나 appen할 때 주로 사용되므로 이런 경우에는 echo를 받아서 sudo tee를 하면 정삭적으로 동작한다.
 
 ### 2) akw
 
@@ -93,6 +96,8 @@ tee는 shell script에서 root 권한으로 특정 파일을 쓰거나 appen할 
 awk는 입력 데이터를 line 단위의 record로 인식한다. 각 record의 text들은 공백문자로 구분된 Filed들로 구분된다.
 
 ![https://t1.daumcdn.net/cfile/tistory/998C54465D1CBC7B16](https://t1.daumcdn.net/cfile/tistory/998C54465D1CBC7B16)
+
+- 즉, awk 명령어는 입력 데이터로부터 특성 옵션에(Pattern) 부합하는 라인을 찾아서 출력하는 명령어이다.
 
 - awk의 명령어 옵션
 
@@ -137,7 +142,7 @@ awk [OPTION...] 'CONDITION { action }' [ARGUMENT...]
   ```
 
 - BEING 과 END
-  BEGIN은 입력 데이터에서 첫 번째 record를 처리하기 전에 BEGIN에 지정된 acrtion을 먼저 실행한다. END는 모든 records를 처리한 다음 END에 지정된 action을 실행한다.
+  BEGIN은 입력 데이터에서 첫 번째 record를 처리하기 전에 BEGIN에 지정된 acrtion을 먼저 실행한다.</br> END는 모든 records를 처리한 다음 END에 지정된 action을 실행한다.
 
   ```bash
   awk 'BEGIN {print "TITLE: Field value 1,2"} {print $1, $2} END{print "Finished"}' file.txt
@@ -146,13 +151,62 @@ awk [OPTION...] 'CONDITION { action }' [ARGUMENT...]
   awk '{s+=$3} END {print s}' ./file.txt
   ```
 
+- 간단한 예시
+
+  ```bash
+  대충 예시로 사용한 파일
+  # lunux_test.txt
+  ADD NEW LINE FOR TEST  1
+  ADD NEW LINE FOR TEST  2
+  ADD NEW LINE FOR TEST  3
+  ADD NEW LINE FOR TEST  4
+  ADD NEW LINE FOR TEST  5
+  ADD NEW LINE FOR TEST  6
+  ADD NEW LINE FOR TEST  7
+  ADD NEW LINE FOR TEST  8
+  ADD NEW LINE FOR TEST  9
+
+  # test.txt
+  1 1 1 1 1
+  2 2 2 2 2
+  3 3 3 3 3
+  4 4 4 4 4
+  5 5 5 5 5
+  6 6 6 6 6
+  7 7 7 7 7
+  8 8 8 8 8
+  9 9 9 9 9
+
+  # cat awkp.script
+
+  ```
+
+  | 사용 예시                                 | 명령어                                                                        | 설명                                                                                                                |
+  | ----------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+  | 파일 전체 내용 출력                       | awk '{print}' linux_test.txt                                                  |                                                                                                                     |
+  | 필드값 출력                               | awk '{print $1}' linux_test.txt                                               | 첫 번째 열이 출력                                                                                                   |
+  | 필드 갑의 임의 문자열을 출력한다          | awk '{print "STR"$1, "STR"$2}' linux_test.txt                                 | 1열과 2열이 같이 출력된다.                                                                                          |
+  | 지정된 문자열을 포함하는 레코드 출력      | awk '/5/' linux_test.txt                                                      | 5가 들어있는 문자열 출력                                                                                            |
+  | 결과 → ADD NEW LINE FOR TEST 5            |
+  | 특정 필드 값 비교결과 출력                | awk '$6 == 6 {print $2, $3, $6}' linux_test.txt                               | “6번 째 열에 6이 포함되어있는 레코드” 의 2,3,6번째 열 출력                                                          |
+  | → NEW LINE 6                              |
+  | 특정 필드들의 합 구하기                   | awk '{sum+=$6} END {print sum}' linux_test.txt                                | “6번 째 열의 값을 모두 더하여 sum에 할당” 후 “sum을 출력’                                                           |
+  | 여러 필드들의 합 구하기                   | awk '{for (i=2;i<NF;i++) total+=$i}; END {print "TOTAL:"total}                | “ 2번째 열부터 시작하여 NF (현재 레코드이 엤는 필드의 개수) 마지막 열까지 돌면서 i열의 값을들 모두 더한 값” 을 출력 |
+  | → TOTAL:135                               |
+  | 레코드 단위로 필드 합 및 평균 값 구하기   | awk '{ sum = 0 } {sum += ($3+$4+$5) } { print sum, sum/3 }                    | “3,4,5번째 열의 합을 구한다” sum , sum/3을 출력한다. “ , “로 구분하여 출력하면 공백으로 구분이 된다.                |
+  | 필드의 연산을 수행한 결과 출력            | awk '{print $1 ,$3+2}' test.txt                                               | 1 3                                                                                                                 |
+  | 레코드 또는 필드의 문자열 길이를 검사한다 | awk ' length($0)>50' linux_test.txt                                           | 문자열의 길이가 50 이상인 것만 출력                                                                                 |
+  | 파일에 저장된 aws programming 실행        | awk -f awkp.script ./test.txt                                                 | → TOTAL : 180                                                                                                       |
+  | 필드 구분 문자 변경                       | awk -F ':' '{ print $1 }' [FILE]                                              |                                                                                                                     |
+  | 필드 중 최대 값 출력                      | awk '{max=0; for(i=1; i<NF; i++) max=($i>max)? $i : max; print max}' test.txt |                                                                                                                     |
+
 awk에 대한 개념과 기본적인 사용 법을 알아봤으니 실습을 해보자 !!
 
 먼저 실습에 사용 할 log 파일을 얻어보자. 아래의 깃 주소에서 가져온다.
 
 [nginx access log](https://gist.github.com/gotoweb/4560f348e03635560a651da67f03ad50)
 
-wget을 Web Get의 약자로 웹 상의 파일을 다운로드 받을 때 사용하는 명령어 이다. HTTP, HTTPS, FTP 프로토콜을 지원한다. 위의 실습 자료를 wget으로 먼저 받아보면 아래와 같이 access.log가 받아지는 것을 확인할 수 있다.
+wget을 Web Get의 약자로 웹 상의 파일을 다운로드 받을 때 사용하는 명령어 이다. HTTP, HTTPS, FTP 프로토콜을 지원한다. </br>위의 실습 자료를 wget으로 먼저 받아보면 아래와 같이 access.log가 받아지는 것을 확인할 수 있다.
 
 ![Untitled](./imgs/Untitled8.png)
 
