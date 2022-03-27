@@ -1,12 +1,3 @@
-# Async_Promise를사용하여_DB에쿼리 보내기
-
-Category: JavaScript
-Visibility: Public
-강의: Self Study
-블로깅: No
-유형: Self Study
-작성일시: 2022년 3월 27일 오전 11:52
-
 # Async , Promise를 사용하여 DB에 쿼리 보내기
 
 이번 주에 면접을 봤는데, 나왔던 질문 중 비동가와 관련된 질문이 있었다.
@@ -17,9 +8,9 @@ Visibility: Public
 
 첫 번재 질문에서는 CallBack지옥을 피하기 위해 나왔고 비동기 처리를 해주는 것이라고 말하였고
 
-두 번째 질문은 Promise 지옥을 피하기 위해 생겨났으며 async로 비동기 처리가 있음을 알리는 키워드로 사용되고 await은 지금 이 함수가 비동기 함수하는 것을 명기해주는 키워드라고 이야기 하였다. 
+두 번째 질문은 Promise 지옥을 피하기 위해 생겨났으며 async로 비동기 처리가 있음을 알리는 키워드로 사용되고 await은 지금 이 함수가 비동기 함수하는 것을 명기해주는 키워드라고 이야기 하였다.
 
-세 번째 질문의 답으로는 상대적으로 오래 걸릴 수 있는 DB 쿼리를 할 때 주로 쓴다 라고 이야기를 하였다. 
+세 번째 질문의 답으로는 상대적으로 오래 걸릴 수 있는 DB 쿼리를 할 때 주로 쓴다 라고 이야기를 하였다.
 
 틀린 대답은 아니었던 것 같지만,, 좀 더 잘 알고 있었다면 좋았을걸..하는 아쉬운 마음에 좀 더 공부를 해보고자 포스팅을 해보기로 하였다. (흑흑 ㅜㅜ 붙었음 좋겠다 붙으면 이 부분은 수정해야지 붙었다고)
 
@@ -40,18 +31,16 @@ Node.js는 싱글쓰레드이다. 즉, Stack이 한 개밖에 없기 때문에 �
 예를들면 DB에 쿼리를 보내는 요청을 하게될 때 아직 DB에서 응답이 오지 않았는데 다음 응답을 해버리게 되거나 이 [사이트의](https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/) 예시처럼 ajax 요청보내고 받응 응답을 출력해야하는 코드의 경우, Node.JS는 비동기 처리를 하므로 결과 코드는 undefined를 출력하게 된다.
 
 - 사이트의 예시
-    
-    ```jsx
-    function getData() {
-    	var tableData;
-    	$.get('https://domain.com/products/1', function(response) {
-    		tableData = response;
-    	});
-    	return tableData;
-    }
-    
-    console.log(getData()); // undefined
-    ```
-    
+  ```jsx
+  function getData() {
+    var tableData;
+    $.get("https://domain.com/products/1", function (response) {
+      tableData = response;
+    });
+    return tableData;
+  }
+
+  console.log(getData()); // undefined
+  ```
 
 오늘은 여기까지, 블로그 수정하고 내일 내용 더 추가하자!
