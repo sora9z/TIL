@@ -1,13 +1,3 @@
-# Network-L7-Devices_and_Cable
-
-Category: Computer Science
-Chapter: Network
-강의: Zerobase
-블로깅: No
-유형: LESSON
-자료: Network-L7%20846e2/1-1._%E1%84%82%E1%85%A6%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AF%E1%84%8F%E1%85%B3_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8B%E1%85%B4%E1%84%8B%E1%85%AA*%E1%84%8B%E1%85%A7%E1%86%A8%E1%84%89%E1%85%A1.pdf, Network-L7%20846e2/1-2.*%E1%84%82%E1%85%A6%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AF%E1%84%8F%E1%85%B3\_%E1%84%80%E1%85%AE%E1%84%8C%E1%85%A9.pdf
-작성일시: 2022년 3월 29일 오후 3:02
-
 제로베이스 컴퓨터 공학자 따라잡기 온라인 완주반 강의를 듣고 정리한 포스팅
 
 # Network-L7-Devices_and_Cable
