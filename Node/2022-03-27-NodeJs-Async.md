@@ -14,7 +14,7 @@
 
 세 번째 질문의 답으로는 상대적으로 오래 걸릴 수 있는 DB 쿼리를 할 때 주로 쓴다라고 이야기를 하였다.
 
-틀린 대답은 아니었던 것 같지만,, 좀 더 잘 알고 있었다면 좋았을걸.. 하는 아쉬운 마음에 좀 더 공부를 해보고자 포스팅을 해보기로 하였다. (흑흑 ㅜㅜ 붙었으면 좋겠다 붙으면 이 부분은 수정해야지 붙었다고)
+틀린 대답은 아니었던 것 같지만,, 좀 더 잘 알고 있었다면 좋았을걸.. 하는 아쉬운 마음에 좀 더 공부를 해보고자 포스팅을 해보기로 하였다. (~~흑흑 ㅜㅜ 붙었음 좋겠다 붙으면 이 부분은 수정해야지 붙었다고~~ 1차 기술 면접은 합격 하였다)
 
 ## 일단 비동기에 대해 정리를 간단하게 해 보자
 
@@ -53,9 +53,12 @@ function getData() {
 
 하지만, 이 코드를 실행하면 맨 아래의 console.log가 실행이 되고 getData()가 실행된다. 그리고 ajax 요청인 get 요청이 보내지는데 비동기 요청이기 때문에 응답을 받기도 전에 return tableData를 하게 된다. 결과는 undefined가 출력된다.
 
+즉, 비동기 함수는 비동기 처리 결과를 외부에 반환할 수 없다. 또한 이미 console.log는 출려되기 때문에 상위 스코프의 변수에 할당한다 해도 소용없다.
+
 ## callback , promise, async await을 사용해야 하는 이유
 
-Javascript의 ajax 요청은 비동기적으로 동작하고 위와 같은 문제가 발생된다. 이런 문제를 해결하기 위해 callback , Promise, async - await 등을 사용한다. 일단 callback을 사용하는 방법에 대해 알아보자.
+Javascript의 ajax 요청은 비동기적으로 동작하고 위와 같은 문제가 발생된다. 이런 이유 때문에 비동기 처리에 대한 후속 처리는 비동기 함수 내부에서 진행되어야 한다.</br>z
+이렇게 비동기 함수의 후속 처리를 위한 방법으로 callback , Promise, async - await등을 사용한다. 일단 callback을 사용하는 방법에 대해 알아보자.
 
 ### Callback
 
@@ -81,17 +84,20 @@ getData(function (tableData) {
 
 참고로 이 부분은 Event loop와 Task queue에 대해 조금 알고 있어야 한다. (Event loop의 이해를 위해 이 [영상을](https://www.youtube.com/watch?v=rpQJAWha8ns) 참고해보자. 이 [영상도](https://www.youtube.com/watch?v=8aGhZQkoFbQ) 조금 길지만 유명하다)
 
-1.  getData함수의 [실행 컨텍스트](https://sora9z.tistory.com/129)가 생성되어 call stack에 push 된다.
+1. getData함수의 [실행 컨텍스트](https://sora9z.tistory.com/129)가 생성되어 call stack에 push된다. </br>여기서, callstack이란 데이터가 밑에서부터 위로 쌓이고 위에서부터 Pop되는 자료구조의 형태로, 실행 컨텍스트가 쌓이는 구조로 코드의 실행 순서를 결정한다.
 
-여기서, callstack이란 데이터가 밑에서부터 위로 쌓이고 위에서부터 Pop 되는 자료구조의 형태로, 실행 컨텍스트가 쌓이는 구조로 코드의 실행 순서를 결정한다.
+2. get 함수의 실행 컨텍스트도 생성되고 callstack에 push된다.
+3. get 함수의 callback함인 익명함수(function(respose))가 Web api 에 설정된다. (ajax요청은 비동기로 동작하므로 JS 런타임이 아닌 Web api에서 실행된다) 그리고 get함수는 callstack에서 pop된다.
+4. get 함수의 요청에 대한 응답이 오면, cb 함수는 task queue에 Push된다.
+5. 다음 실행할 코드가 없으므로 callstack의 실행컨텍스트들은 pop되어 텅텅 비워진다.
+6. event loop는 callstack에 작업이 없음을 확인하고 task queue의 작업을 callstack으로 push한다.
+   callback 함수도 함수 이므로 코드평가를 거치고 실행 컨텍스트를 생성하여 call stack에 Push되고 실행을 한다.
+7. cb함수에 있는 callbackFunc도 callstack에 push되어 response를 출력하고 callstack에서 Pop된다.
 
-2.  get 함수의 실행 컨텍스트도 생성되고 callstack에 push 된다.
-3.  get 함수의 callback 함수인 익명 함수(function(respose))가 NodeJS api 또는 Web api에 들어가고 타이머가 설정된다. (ajax요청은 비동기로 동작하므로)
-4.  비동기 함수의 callback 함수는 task queue에 보관된다. ajax는 비동기로 동작하므로 callback은 task queue에 보관된다.
-5.  다음 실행할 코드가 없으므로 callstack의 실행컨텍스트들은 pop 되어 텅텅 비워진다.
-6.  Node.js 또는 Web api에서 설정된 타이머 시간이 지나면 cb 함수는 taskqueue에 Push 된다.
-7.  event loop는 callstack에 작업이 없음을 확인하고 task queue의 작업을 callstack으로 push 한다.
-8.  cb함수에 있는 callbackFunc도 callstack에 push 되어 response를 출력하고 callstack에서 Pop 된다.
+영상에서 가져온 그림을 추가해 보았다.
+![image](https://user-images.githubusercontent.com/70902065/160529135-a7bd4a96-dc55-452d-a766-d1c4e0078a86.png)
+
+다소 긴 과정이긴 하다. 아무튼 이런 방식을 취함으로써 비동기로 동작하는 Javascript에 대해 순서를 보장할 수 있게 된다.
 
 다소 긴 과정이긴 하다. 아무튼 이런 방식을 취함으로써 비동기로 동작하는 Javascript에 대해 순서를 보장할 수 있게 된다.
 
