@@ -11,3 +11,4 @@
 - [DATABASE-NOSQL-MongoDB-AggregationFramework](./DATABASE-NOSQL-MongoDB-lesson정리-AggregationFramework/DATABASE-NOSQL-MongoDB-lesson정리-AggregationFramework.md)
 - [DATABASE-NOSQL-MongoDB-배열연산자-Projection](./DATABASE-NOSQL-MongoDB-lesson정리-배열연산자-Projection.md)
 - [DATABASE-NOSQL-MongoDB-Operator](./DATABASE-NOSQL-MongoDB-lesson정리-Operator.md)
+- [Random하게-row를-뽑아보자-postgresql](./Random하게-row를-뽑아보자-postgresql.md)
