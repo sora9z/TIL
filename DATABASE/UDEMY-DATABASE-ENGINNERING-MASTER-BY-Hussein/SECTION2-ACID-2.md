@@ -8,6 +8,7 @@
 
 1. Isolation (고립성)
 
+- 고립성이란 동시에 발생하는 다른 트랜잭션과 완전히 고립된 상태에서 트랜잭션이 실행되는 것을 의미한다.
 - 고립성의 필요성
   - 다수의 사용자에 의해 Database에 많은 TCP connection이 있고 각 connectoin이 transcation을 실행되어 동시에 동일한 데이터를 쓰거나 읽으려고 경합하는 동시성이 발생할 수 있다. 이럴 때 고립성이 필요하다.
   - 진행중이 transaction이 commit 전에 다른 transaction에 의해 변경된 내용을 볼 수 있어야 할까? - 이 물음에 대한 답은 사실상 상황에 따라 다르긴 하다.
@@ -68,3 +69,65 @@
   - 행을 잠근다는 것은 TX1이 업데이트를 하면 행을 잠그고 커밋이 되었을 때 잠금을 해제하는 것을 의미한다.
 
 [2] Isolation Levels
+
+[참고자료]
+
+- [위키피디아](<https://en.wikipedia.org/wiki/Isolation_(database_systems)>)
+
+  - 잘 설명해놓은듯하다.
+
+- [Deeply understand Isolation levels and Read phenomena in MySQL & PostgreSQL](https://dev.to/techschoolguru/understand-isolation-levels-read-phenomena-in-mysql-postgres-c2e)
+
+  - mySQL과 PostgreSQL로 직접 고립수준을 바꾸면서 설명을 해준다.
+
+[Isolation levels VS Read phenomena]
+![Isolation levels VS Read phenomena](Isolation_levels_VS_Read_phenomena.png)
+
+- 고릭 수준이란 위에 소개한 Read phenomena를 해결하기 위해 개발되었다.
+- SQL 명렁어에서는 transaction을 시작할 때 set isolation level을 사용하여 고립수준을 설정한다.
+- 각 DBMS는 고립 수준을 서로 다르게 구현한다는 것을 알아두자.
+
+(1) Read uncommited
+
+- No Isolation 고립 수준이 없다.
+- 커밋이 되든 안되든 상관 없이 다른 변경사항들을 읽을 수 있다.
+- 외부에서 모든 변경사항은 커밋 여부와 상관없이 트랜잭션에게 보인다.
+
+(2) Read commited
+
+- 트랸젝션의 각 query는 커밋괸 변경사항만 볼 수 있다.
+- 가장 인기있는 고립수준 중 하나라고 한다.
+- 많은 데이터베이스가 이 고립 수준을 기본 고립수준으로 사용한다
+  -> 하지만 이 고립수준은 일관성이 없을 수 있지 않을까?
+
+(3) Repeatable Read
+
+- 반복되지않는 읽기를 해결하기 위해 고안된 고립수준이다.
+- 반복 간으하게 만드는 고립수준이다.
+- 실행중인 하나의 Transaction 에서 어떤 row를 읽었을 때 transaction이 끝나기 전까지 row에 변경이 없는 것을 의미한다.
+- 유령 읽기를 없애지 않는다.
+
+(4) Snapshot
+
+- 하나의 트랜젝션의 각 쿼리들은 그 transaction이 시작 시점까지 커밋된 변경사항만들 볼 수 있다.
+- 마치 그 순간의 database의 snapshot과 같다.
+- 모든 읽기 현상을 제거하는 것을 보장한다.
+- postgres의 반복 가능한 읽기는 사실 스냅샷 고립이다.
+  - transaction을 시작하면 어떤 버전에 있는지 타임스탬프로 표시한다.
+
+(5) Serializable
+
+- transaction들이 마치 직렬화 된 것 처럼 실행된다.
+- 가장 느리다.
+- 더이상 동시성은 없다.
+
+[3] 정리
+
+- 고립성이란 동시에 발생하는 여거 트랜젝션이 각 트랜젝션에 완전히 고립되어 실행되는 것을 의미한다.
+- 고립성이 없다면 dirty read, non-repeatable read, phantom read, lost update 과 같은 읽기 현상 문제가 발생할 수 있다.
+- 이를 해결하기 위해 고립 수준이 존재한다.
+- 각 DBMS는 고립 수준을 서로 다르게 구현한다.
+- Pessimistic - Row level locks, table locks, page locks 는 비용이 많이 든다.
+  - 특히 row level의 경우 row가 많으면 비용이 많이 든다.
+- Optimistic - lock이 없고 단지 change를 추적하고 transaction을 실패시킨다.
+- Repeatable read는 row를 locking하기 때문에 row가 많으면 비용이 많이 든다. postgressms 이것을 snapshot으로 수현하기 때문에 phentom read가 발생하지 않는다.
