@@ -10,59 +10,59 @@
 - 사용하는 함수 : sum, mean, max, min, std, skew
 
 - 구매액 합의 분포를 lable별로 그림
-  ![feature_engineering_1](/imgs/feature_engineering_1.png)
+  ![feature_engineering_1](./imgs/feature_engineering_1.png)
   - lable = 1 인 겻은 300이 넘음
   - lable이 1일때가 0일 떄보다 전반적으로 값이 크다
   - lable별 분포가 확연하게 다르기 때문에 모델에서 사용할 수 있는 좋은 피쳐라고 할 수 있다.
   - 머신러닝 모델은 데이터에서 타켓을 구분할 수 있는 패턴을 인식하는 것이고 어떤 피처가 타겟 레이블별로 분포가 다르면 모델에서 이 패턴을 쉽게 인식할 수 있기 때문에 좋은 피처라고 할 수 있다.
 - quantity-sum Feature
-  ![feature_engineering_2](/imgs/feature_engineering_2.png)
+  ![feature_engineering_2](./imgs/feature_engineering_2.png)
   - 과거 고객이 구매한 상품 개수의 합
   - 상품 개수의 합이 클수록 lable값이 1인 확률이 높다
   - lable별 분포가 확연히 다르기 때문에 좋은 피처라고 할 수 있다.
 - price-sum feature
-  ![feature_engineering_3](/imgs/feature_engineering_3.png)
+  ![feature_engineering_3](./imgs/feature_engineering_3.png)
   - 과거 고객이 주문한 상품 가격의 합
   - 비싼 상품을 구매할 수록 lable값이 1인 확률이 높다
   - lable이 1일 떄가 0일 떄보다 가격이 높다
   - lable별 분포가 확연히 다르기 때문에 좋은 피처라고 할 수 있다.
 - total-count Feature
-  ![feature_engineering_4](/imgs/feature_engineering_4.png)
+  ![feature_engineering_4](./imgs/feature_engineering_4.png)
   - 이것도 lable이 1일 떄가 0일 때보다 전반적으로 값이 크다
   - lable별 분포가 확연히 다르기 때문에 좋은 피처라고 할 수 있다.
 - 다른 피쳐들도 확인을 해볼 수 있는데 quantity, price, total의 count가 같다. row수를 세기 때문임 count feature는 사실상 중복 피처임
 - total-mean Feature
-  ![feature_engineering_5](/imgs/feature_engineering_5.png)
+  ![feature_engineering_5](./imgs/feature_engineering_5.png)
   - 과거 고객이 구매한 구매액의 평균
   - 평균이 높을수록 lable이 1일 확률이 높다고 할 수 있다고 생각할 수 있는데 실제 그래프를 보면 기대했던 것 처럼 차이가 크지 않은 것을 볼 수 있다.
 - quantity-mean Feature
-  ![feature_engineering_6](/imgs/feature_engineering_6.png)
+  ![feature_engineering_6](./imgs/feature_engineering_6.png)
   - 과거 고객이 구매한 상품 개수의 평균
   - 평균이 높을수록 lable이 1일 확률이 높다고 할 수 있는데 실제 그래프를 보면 기대했던 것 처럼 차이가 크지 않은 것을 볼 수 있다. 조금 큰 것을 볼 수 있다.
 - price-mean Feature
-  ![feature_engineering_7](/imgs/feature_engineering_7.png)
+  ![feature_engineering_7](./imgs/feature_engineering_7.png)
   - 과거 고객이 구매한 상품 가격의 평균
   - 이것도 큰 차이는 없다.
 - total-min Feature
-  ![feature_engineering_8](/imgs/feature_engineering_8.png)
+  ![feature_engineering_8](./imgs/feature_engineering_8.png)
   - 과거 고객이 구매한 구매액의 최소값 분포
   - lable이 1인 구매액의 최솟값이 0인 구매액의 최솟값보다 작은 것을 볼 수 있음
   - "-" 인 것을 환불건
 - quantity-min Feature
-  ![feature_engineering_9](/imgs/feature_engineering_9.png)
+  ![feature_engineering_9](./imgs/feature_engineering_9.png)
   - 과거 고객이 구매한 상품 개수의 최소값 분포
   - 분포 자체에 큰 차이는 없어보인다.
 - price-min Feature
-  ![feature_engineering_10](/imgs/feature_engineering_10.png)
+  ![feature_engineering_10](./imgs/feature_engineering_10.png)
   - 과거 고객이 구매한 상품 가격의 최소값 분포
   - lable1인 값이 0인 값보다 작은 값에 분포되어있음을 볼 수 있다.
 - total-std Feature
-  ![feature_engineering_11](/imgs/feature_engineering_11.png)
+  ![feature_engineering_11](./imgs/feature_engineering_11.png)
   - 과거 고객이 구매한 구매액의 표준편차 분포
   - 표준편차 값이 작으면 구매액이 비슷하다고 볼 수 있음. 크면 구매액간의 차이가 크다고 볼 수 있다
   - 표준편차가 큰게 lable1일 확률이 족므 높아보이긴한다.
 - total-skew Feature
-  ![feature_engineering_12](/imgs/feature_engineering_12.png)
+  ![feature_engineering_12](./imgs/feature_engineering_12.png)
   - 과거 고객이 구매한 구매액값이 어느 쪽으로 쏠려있는지를 의미한다.
   - 왜도가 음수이면 왼쪽으로 치우쳐져있음을 의미하고 양수이면 오른쪽으로 치우쳐져있음을 의미한다.
   - 왜도가 크면 lable1일 확률이 높아보인다.
@@ -71,7 +71,7 @@
 
 - 모델 Training 시 Cross Validation을 적용해서 Out of Fold Validaton 성능 측정 및 Test 데이터 예측을 통해 성능 향상
 - Cross Validation을 데이터를 여러 개의 fold로 나눠서 validation 성능을 측정하는 방법
-  ![feature_engineering_13](/imgs/feature_engineering_13.png)
+  ![feature_engineering_13](./imgs/feature_engineering_13.png)
 - Out of Fold 예측은 Fold마다 trainig한 모델로 테스트 데이터를 예측하고 Fold 개수 만큼의 test 결과가 나오는데 일르 average 앙상블에서 최종 테스트 예측값으로 사용하는 방식을 말한다.
 
 ## 3. LightGBM Early Stopping 적용
