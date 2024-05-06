@@ -11,7 +11,7 @@
 ## 2. Boosting Tree 피처 중요도
 
 1. LightGBM 피처 중요도
-   ![w2-feature_engineering_2-1](imgs/feature_engineering_2-1.png)
+   ![w2-feature_engineering_2-1](./imgs/w2-feature_engineering_2-1.png)
 
 - training된 LightGBM 모델 클래스에 feature_importance(importance_type) 함수로 피처 중요도 계싼 기능 제공
 - 인자의 importance_type 값에 'split' 또는 'gain' 사용 가능, 디폴트는 'split'
@@ -19,7 +19,7 @@
   - 'gain' : total gains of splicts which use the feature
 
 2. XGBoost 피처 중요도
-   ![w2-feature_engineering_2-2](imgs/feature_engineering_2-2.png)
+   ![w2-feature_engineering_2-2](./imgs/w2-feature_engineering_2-2.png)
 
 - training된 모델 클레스에 get_score(importance_type) 함수로 피처 중요도 계산 기능 제공
 - 인자의 importance_type, 디폴트는 'weight'
@@ -56,10 +56,10 @@
    - 많이 쓰고있다.
 
    - 수도코드는 아래와 같다
-     ![w2-feature_engineering_2-3](imgs/feature_engineering_2-3.png)
+     ![w2-feature_engineering_2-3](./imgs/w2-feature_engineering_2-3.png)
 
    - 중요도 적용 그래프
-     ![w2-feature_engineering_2-4](imgs/feature_engineering_2-4.png)
+     ![w2-feature_engineering_2-4](./imgs/w2-feature_engineering_2-4.png)
 
 ## 4. 피처 선택이란?
 
@@ -73,14 +73,14 @@
     - Embedded Method
 
 1. Filter method
-   ![w2-feature_engineering_2-5](imgs/feature_engineering_2-5.png)
+   ![w2-feature_engineering_2-5](./imgs/w2-feature_engineering_2-5.png)
 
    - 통계적인 방법을 사용해서 피처들의 상관관계를 알아내는 방법
    - 가장 간단하게 사용할 수 있는 방식 중 하나이다.
    - These methods are particularly effective in computation time and robust to overfitting
 
 2. Wapper method
-   ![w2-feature_engineering_2-6](imgs/feature_engineering_2-6.png)
+   ![w2-feature_engineering_2-6](./imgs/w2-feature_engineering_2-6.png)
 
 - 변수들의 하위 집합을 평가하는 방식으로, 필터 접근법과는 달리 변수 간의 가능한 상호 작용을 감지할 수 있게 해준다.
 
