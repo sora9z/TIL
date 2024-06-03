@@ -28,10 +28,14 @@
 
 - 호출자는 요청을 보내고 응답을 받을 떄까지 작업을 수행할 수 있다.
 - 서버가 응답을 받았는지 아닌지 확인하는 방법
+
   1. epol : 리눅스에서 사용하는 방법이며 response가 준비되었는지 계속 확인
   2. io_uring : 수신자는 작업이 완료되면 call back을 보낸다. windows, iocp or 리눅스의 IOUreq 에서 발생. 작업이 완료되면 CQ(COMPLETION QUEUE)에 작업이 완료되었다는 메시지를 보낸다.
+
   3. Node.js에서 epoll을 사용할 수 없거나 스택을 완료할 수 없는 경우엔 blocked된 새 스레드를 활성화한다.
+
   - Nodejs의 경우 linux의 경우 epoll을, windows의 경우 iocp를 사용한다.
+
 - 예시
 
   - 프로그램은 보조 스레드를 활성화한다.
@@ -62,4 +66,4 @@
 
 - Asynchronous OS fsync (fs cache)
   - 보통 OS에 파일을 작성할 때 실제로 디스크로 바로 기로고디지 않는다. OS file system cache에 남아있다. (DFS - Disk file system, ext-Extended file system)
-  - OS 안테 쓰기 작업이 페이지 형태로 이동하는 캐시가 있다. 비동기적으로 OS는 많은 쓰기 작업을 기다린 다음 모두 함께 플러시 한다.
+  - OS 안에 쓰기 작업이 페이지 형태로 이동하는 캐시가 있다. 비동기적으로 OS는 많은 쓰기 작업을 기다린 다음 모두 함께 플러시 한다.
