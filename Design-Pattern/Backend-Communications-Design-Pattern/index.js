@@ -1,7 +1,7 @@
 const http = require("http");
 const WebSocketServer = require("WebSocket").Server;
 
-let connections = [];
+let connections = []; // 사용자들 
 
 // create a raw http server
 // This will help us create the TCP which will then pass to the websocket to do the
