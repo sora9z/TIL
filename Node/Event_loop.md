@@ -37,7 +37,7 @@
 
 ![event_loop_1](imgs/event_loop_1.png)
 
-- Node.js는 I/O 작업을 메인 쓰레드가 아닌 다른 쓰레드에 위임을 함으로써 실글 쓰레드 논 블로킨 I/O를 구현한다.
+- Node.js는 I/O 작업을 메인 쓰레드가 아닌 다른 쓰레드에 위임을 함으로써 싱글 쓰레드 논 블로킨 I/O를 구현한다.
 - 이 I/O 작업을 libuv에 위임하고 libuv는 이벤트 루프를 통해 이를 처리한다.
 - Event loop는 Node.js가 비동기 작업을 관리하기 귀한 구현체이다.
 - Event loop는 총 6개의 phase로 구성되어있으며 한 phase에서 다른 phase로 넘어가는 것을 틱 이라고 한다.
@@ -278,6 +278,60 @@ static int uv\_\_run_pending(uv_loop_t\* loop) {
 
 ## 6. nextTickQueue와 microtaskQueue
 
+### nextTiickQeue과 microtaskQueue
+
+- nextTickQueue와 microtaskQueue는 libuv가 아니라 Node.js에 구현되어있다. 즉, event loop의 phase와는 상관 없이 동작한다.
+- microTackQueue는 Resolve된 프로미스 콜밷을 갖고있다.
+- nextTickQueue :
+  - process.nextTick()의 콜백을 관리한다.
+  - microTaskQueue보다 우선순위가 높다.
+    ```js
+    Promise.resolve().then(() => console.log("resolve"));
+    process.nextTick(() => console.log("nexTick"));
+    /*
+    nexTick
+    resolve
+    */
+    ```
+- 위의 둘은 현재 phase와는 상관 없이 **지금 수행하고 있는 작업이 끝나면 즉시 바로** 실행한다.
+- 시스템의 실행 한도에 영향을 받지 않는다 -> Node.js는 큐가 다 비워질 때까지 콜백들을 실행한다.
+
+### nextTickQueue와 microtackQueue의 동작
+
+- Node v11.00 이전과 이후에 실행 순서에 차이가 있다.
+
+  - 이전 : 매 tick마다 nextTickQueue와 microtaskQueue를 검사했다.
+  - 이후 : 현재 실행하고 있는 작업이 끝나면 즉시 실행하도록 변경
+
+    - 아래의 예시의 경우 Timer phase에서 console.log(1) 을 실행하고 process.nextTick()과 promise.resolve가 실행되면서 nextTickQueue와 microtaskQueue에 담긴다. 현재 작업에 대한 실행이 끝났으므로 다름 timer phase의 작업을 먼저 보기전에 우선순위가 높은 nextTickQueue와 microtaskQueue를 실행한다.
+
+  - 노드 버전 전, 후 실행 비교
+
+    ```js
+    setTimeout(() => {
+      console.log(1);
+      process.nextTick(() => {
+        console.log(3);
+      });
+      Promise.resolve().then(() => console.log(4));
+    }, 0);
+    setTimeout(() => {
+      console.log(2);
+    }, 0);
+    /*
+    > npx -p node@10 node test.js
+    1
+    2
+    3
+    4
+    ❯ npx -p node@11 node test.js
+    1
+    3
+    4
+    2
+    */
+    ```
+
 ##7. 그 외 정리사항
 
 1. setTimeout과 setImmediate 비교
@@ -287,5 +341,12 @@ static int uv\_\_run_pending(uv_loop_t\* loop) {
    - setTimeout : 지정한 시간이 지난 후에 실행.그 다음 이벤트 루프 사이클에서 실행이 되기 때문에 시간이 정확하지는 않다.
 
 2. check phase와 process.nextTick의 차이
+
    - process.ntextTick : 같은 phase에서 호출한 즉시 실행된다. -> 즉시 실행됨
    - setImmediate : 다음 틱에서 실행된다. Node.js가 틱을 거쳐서 check phase에 진입하면 실행된다. -> 다음 틱에 실행됨
+
+3. process.nextTick()은 언제 쓰이나?
+   - 비동기 작업의 콜백을 예약할 때 : 특정 비동기 작업이 완료된 후 즉시 콜백을 실행하고 싶을 때 사용.
+     - 하나의 작업이 끝나면 우선순위에 따라 nextTickQueue를 확인하므로 가능하다.
+   - 재귀적인 비동기 작업을 수행할 때 : 콜 스택이 너무 깊어지지 않도록 비동기 작업을 반복적으로 호출해야 할 때
+   - I/O 작업 이후 처리할 때 : 작업이 완료된 후 추가 작업을 즉시 처리해야할 때
