@@ -1,8 +1,16 @@
 # Event loop
 
-[참고 블로그](https://www.korecmblog.com/blog/node-js-event-loop)
-[참고글](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick)
-[libuv document](https://docs.libuv.org/en/v1.x/index.html)
+1. [Node.JS의 구조](#1.-Node.JS의-구조)
+2. [libuv 라이브러리란?](#2.-libuv-라이브러리란?)
+3. [Event loop란?](#3.-Event-loop란?)
+4. [NodeJS 를 실행시켰을 때의 흐름 with event loop](#4.-NodeJS-를-실행시켰을-때의-흐름-with-event-loop)
+5. [Event loop의 Phase](#5.-Event-loop의-Phase)
+6. [nextTickQueue와 microtaskQueue](#6.-nextTickQueue와-microtaskQueue)
+7. [그 외 정리사항](#7.-그-외-정리사항)
+
+- [참고 블로그](https://www.korecmblog.com/blog/node-js-event-loop)
+- [참고글](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick)
+- [libuv document](https://docs.libuv.org/en/v1.x/index.html)
 
 ## 1. Node.JS의 구조
 
