@@ -12,7 +12,7 @@
 - [참고글](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick)
 - [libuv document](https://docs.libuv.org/en/v1.x/index.html)
 
-## 1. Node.JS의 구조
+## Node.JS의 구조
 
 ![Nodejs_구조](imgs/Nodejs_구조.png)
 
