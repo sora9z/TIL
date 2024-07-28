@@ -1,1 +1,0 @@
-- [Design-Pattern-MVC-Intro](./Design-Pattern-MVC-Intro)
