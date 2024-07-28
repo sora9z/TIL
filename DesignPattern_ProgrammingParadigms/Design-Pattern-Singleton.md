@@ -45,7 +45,7 @@
     });
     ```
 
-    - 이런 문제를 해결하기 위해 Depencency Injection을 사용할 수 있다. 이를 사용하면 테스트 중 모의 객체를 주입할 수 있기 때문에 테스트의 독립성을 유지할 수 있다.
+    - 이런 문제를 해결하기 위해 Depencency Injection을 사용할 수 있다. 이를 사용하면 테스트 중 모의 객체를 주입할 수 있기 때문에 테스트의 독립성을 유지할 수 있다. [예시코드](https://github.com/sora9z/Mini-Toys-For-Study-Test/tree/main/design_pattern_test/singleton/singleton_with_di)
 
 ## 구현 방법
 
