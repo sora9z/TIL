@@ -1,5 +1,11 @@
 ## Design Pattern and Programming Paradigms
 
+- 제목은 아래와 같이 분류한다
+  - Design-Pattern-{분류}-{이름}
+  - 분류 : 디자인패턴의 목적에 따른 분류
+    - 생성 : Creation
+    - 구조 : Structure
+    - 행위 : Behavior
 - 작성할 떄 아래의 내용을 포함하여 작성한다.
 
 1. 왜 사용하는지
