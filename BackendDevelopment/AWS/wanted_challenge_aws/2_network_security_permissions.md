@@ -10,11 +10,11 @@
 
 ### Region 과 Availability Zone 그리고 VPC에 대한 간략한 정리
 
-![region_az](region_az.png)
+![region_az](./imgs/region_az.png)
 
 - 출처 : https://disaster-recovery.workshop.aws/en/intro/infra-aws/regions-az.html
 
-![aws-region-vpc-az-subnet](aws-region-vpc-az-subnet.png)
+![aws-region-vpc-az-subnet](./imgs/aws-region-vpc-az-subnet.png)
 
 - 출처 : https://aws.amazon.com/blogs/apn/amazon-vpc-for-on-premises-network-engineers-part-one/
 
@@ -33,7 +33,7 @@
   - 각 AZ는 하나 이상의 데이터 센터로 구성되어있다.
   - 각 가용영역은 하나 이상의 데이터센터로 이루어져있고 물리적으로 분리되어있기 때문에 하나의 AZ에서 장애가 발생해도 다른 AZ에 영향을 미치지 않는다.
 
-![region_az_2](region_az.png)
+![region_az_2](./imgs/region_az.png)
 
 - 위의 그림을 보면 데칼코마니처럼 구성이 되어있다. 각 가용영역이 서로 비슷하게 구성되어있고 두 개의 리전 또한 비슷하게 구성되어있다. 이중화를 통해 가용성을 높인 것이다.
 
@@ -44,11 +44,11 @@
 
 ### VPC 및 보안 관련된 요어에 대해 알아보자
 
-![aws-vpc-etc-1](aws-vpc-etc-1.png)
+![aws-vpc-etc-1](./imgs/aws-vpc-etc-1.png)
 
 1. VPC - public subnet & private subnet
 
-![subnet](subnet.png)
+![subnet](./imgs/subnet.png)
 
 - [AWS subnet 공홈](https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html)
 - [AWS vpc 공홈](https://docs.aws.amazon.com/vpc/latest/userguide/configure-your-vpc.html)
@@ -68,7 +68,7 @@
 
 2. Routing Table
 
-![routing_table_1](routing_table_1.png)
+![routing_table_1](./imgs/routing_table_1.png)
 
 - [AWS routing table 공홈](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html)
 
@@ -85,24 +85,24 @@
   - 라우팅 테이블은 네트워크 트래픽을 어디로 보내야하는지를 규정하는 규칙들의 집합니다.
   - 서브넷은 고유한 라우팅 테이블이 있고 이 테이블에 따라 트래픽이 전달된다.
 
-    ![routing_table_2](routing_table_2.png)
+    ![routing_table_2](./imgs/routing_table_2.png)
 
   - 예를 들어 위의 그림의 경우(위의 그림은 온프레미스 네트워크와 aws 레소스간의 네트워크 통신을 보여주고 있다) 서브넷 내에 있는 EC2같은 리소스에서 외부 네트워크로 패킷을 보낼 때 그 패킷은 라우팅 테이블을 참조하여 로컬 게이트웨이를 통해 온프레미스 네트워크로 전달된다.
 
 3. Internet Gateway(IGW)
 
-![igw](igw.png)
+![igw](./imgs/igw.png)
 
 - [AWS IGW 공홈](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html)
 
 - Public subnet과 internet을 연결하는 네트워크 컴포넌드이다.
 - igw를 통해서만 public subnet에 있는 리소스들이 외부와 통신이 가능하다.
 - 참고로 라우팅 테이블에 인터넷 게이트웨이랑 퍼블릭 서비넷이 연결된다. 이는 퍼블릭 서브넷과 프라이빗 서브넷을 구분짓는 중요 요소이다.
-  ![public_subnet_igw](public_subnet_igw.png)
+  ![public_subnet_igw](./imgs/public_subnet_igw.png)
 
 4. Nat Devices
 
-![nat_device](nat_device.png)
+![nat_device](./imgs/nat_device.png)
 
 - [AWS NAT Device 공홈](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat.html)
 
@@ -111,7 +111,7 @@
 
 - NAT Gateway
 
-  ![nat_gateway](nat_gateway.png)
+  ![nat_gateway](./imgs/nat_gateway.png)
 
   - [NAT Agteway 공홈](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html)
 
@@ -152,7 +152,7 @@
   - NAT 인스턴스 : 직접 NAT 인스턴스를 띄워서 NAT기능을 수행하게도 할 수 있다.
 
 5. 네트워크 ACL
-   ![network_acl](network_acl.png)
+   ![network_acl](./imgs/network_acl.png)
 
    - [AWS 공문](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html)
 
@@ -177,7 +177,7 @@
 
 6. 보안 그룹
 
-![security_group](security_group.png)
+![security_group](./imgs/security_group.png)
 
 - [AWS 공문](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html)
 
@@ -211,10 +211,10 @@
 
   - 왜냐하면.. 뭐가 잘 안된다
   - 가용 영역들이 다 퍼블릭이다. 여기에 프라이빗 붙이고 하려면 문제 생기는 경우도 있고..
-    ![실습1](실습1.png)
+    ![실습1](./imgs/실습1.png)
 
 - vpc 생성시 옵션들
-  ![실습2](실습2.png)
+  ![실습2](./imgs/실습2.png)
 
   - private 설정
 
@@ -229,10 +229,10 @@
     - VPC내에 EC2에서 S3를 사용할 수도 있는데 있으면 추가적인 네트워크 안들어서 이득이다
 
 - vpc의 라우팅 테이블을 보면 igw가 있다면 public이다
-  ![실습3](실습3.png)
+  ![실습3](./imgs/실습3.png)
 
 - private은 아래와 같이 모든 트래픽이 nat gateway랑 연결된다.
-  ![실습4](실습4.png)
+  ![실습4](./imgs/실습4.png)
 
 9. 강의 중 질문 내용 정리
 
