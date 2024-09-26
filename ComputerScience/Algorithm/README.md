@@ -1,4 +1,7 @@
-- [[Move to Previous Directory]](../README.md)
+## Algorithm
+
+[⬅️ BACK ](../README.md)
+
 - [Algorithm-LPS](./Algorithm-LPS.md)
 - [Algorithm-getBracketObjects](./Algorithm-getBracketObjects.md)
 - [Dynamic Programming - Fibonacci](./Algorithm-DynamcProgrammin-Fibonacci)

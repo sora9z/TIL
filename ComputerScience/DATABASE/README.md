@@ -1,4 +1,7 @@
-- [[Move to Previous Directory]](../README.md)
+## Database
+
+[⬅️ BACK ](../README.md)
+
 - [Database-SQL기본-DDL](./Database-SQL기본-DDL.md)
 - [Database-SQL기본-DML-INSERT-DELETE-UPDATE](./Database-SQL기본-DML-INSERT-DELETE-UPDATE.md)
 - [Database-SQL기본-DML-JOIN](./Database-SQL기본-DML-JOIN.md)

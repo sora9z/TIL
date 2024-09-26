@@ -1,4 +1,7 @@
-- [[Move to Previous Directory]](../README.md)
+## Computer Science
+
+[⬅️ BACK ](../README.md)
+
 - [Algorithm](./Algorithm/README.md)
 - [DATABASE](./DATABASE/README.md)
 - [Network](./Network/README.md)

@@ -1,4 +1,5 @@
-- [[Move to Previous Directory]](../README.md)
+[⬅️ BACK ](../README.md)
+
 - [AWS](./AWS/README.md)
 - [Bugs](./Bugs/README.md)
 - [Docker](./Docker/README.md)

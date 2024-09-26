@@ -1,4 +1,5 @@
-- [[Move to Previous Directory]](../README.md)
+[⬅️ BACK ](../README.md)
+
 - [w1-데이처전처리](./w1-데이터전처리.md)
 - [w1-머신러닝기본개념](./w1-머신러닝기본개념.md)
 - [w1-정형데이터](./w1-정형데이터.md)
