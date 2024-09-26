@@ -1,4 +1,4 @@
-[⬅️ BACK ](../README.md)
+[⬅️ BACK ](./README.md)
 
 ## 컴퓨터 구조를 왜 알아야 하나?
 

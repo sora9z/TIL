@@ -1,3 +1,5 @@
+[⬅️ BACK ](./README.md)
+
 ## 정형데이터 분류 2 - EDA
 
 - EDA가 무엇인지
