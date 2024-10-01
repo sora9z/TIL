@@ -18,3 +18,5 @@
 - [Random하게-row를-뽑아보자-postgresql](./Random하게-row를-뽑아보자-postgresql.md)
 - [UDEMY-DATABASE-ENGINNERING-MASTER-BY-Hussein](./UDEMY-DATABASE-ENGINNERING-MASTER-BY-Hussein/README.md)
 - [ELASTIC_SEARCH](./ELASTIC_SEARCH/README.md)
+- [POSTGRESQL-INDEX_COMP](./postgresql_indexes.md)
+- [POSTGRESQL-GIN-INDEX_COMP](./Postgresql_gin_index_compare.md)

@@ -78,6 +78,7 @@ Sample_airbnb의 listingsAndReviews Collection을 사용하였다.
   1083
   ```
 - accommodations Collection의 amenities 필드에서 “Free parking on permissions”,”Air conditioning”,”Wifi”를 포함하면 2개 이상의 침실이 있는 숙소를 찾는 쿼리
+
   ```bash
 
   ```
@@ -338,16 +339,19 @@ relationships: [
 ```
 
 - 여기서 특성 사람의 이름 last_name필드를 이용해 쿼리를 해보자(last_name:"Zuckerberg”)
+
   ```bash
   sample_training> db.companies.find({"relationships.0.person.last_name":"Zuckerberg"},{"name":1}).pretty()
 
   [ { _id: ObjectId("52cdef7c4bab8bd675297d8e"), name: 'Facebook' } ]
   ```
+
   - 0 : 배열의 첫 번째 요소
   - person : 중첩 객체를 값으로 갖고있는 필드
   - last_name: sub document person의 필드
   - “Zuckerberg” : 찾는 값
   - {”name”:1} : Projection . 결과에 name만 포함
+
 - relationships 배열에서 이름이 Mark인 CEO가 몇 명인지 확인해보자.
 
   (fitst_name : Mark} title에 CEO문자열이 포함되어있는 조건 찾기
@@ -392,9 +396,11 @@ relationships: [
 
 - relationships 배열에 있는 Mark중 현재 회사를 떠난 사람을 찾아보자.
   (is_past가 true 인지 false인지를 통해 알 수 있다 treu 이면 떠났다는 의미)
+
   ```bash
   sample_training> db.companies.find({"relationships":{"$elemMatch":{"is_past":true,"person.first_name":"Mark"}}},{"name":1}).count()
   256
 
   ```
+
   is_past가 true이고 fitst_name이 Mark인 relationships 배열의 요소를 가진 회사는 256개이다.
