@@ -43,7 +43,7 @@
         - 불용어(의미없는 단어는 제거)
     - 단점은 인덱스 생성 속도가 느려서 업데이트 비용이 높다. 잦은 업데이트라면 성능
       고려해야한다
-      ![gin_gist](./image/gin_gist.png)
+      ![gin_gist](./imgs/gin_gist.png)
 
   - BRIN(Block Range Indexes)
     - 테이블의 물리적 순서와 값이 잘 연관되어있는 열에 효과적임
