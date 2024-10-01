@@ -4,7 +4,17 @@
 
 ## 조사
 
-### GIN - %LIKE% 검색에 대한 GIN index 효율성 [참고](https://medium.com/vuno-sw-dev/postgresql-gin-%EC%9D%B8%EB%8D%B1%EC%8A%A4%EB%A5%BC-%ED%86%B5%ED%95%9C-like-%EA%B2%80%EC%83%89-%EC%84%B1%EB%8A%A5-%EA%B0%9C%EC%84%A0-3c6b05c7e75f)
+- 주소정보가 들어있는 필드에서 검색을 하기위헤 %like%쿼리를 사용하게 된다.즉, 부분검색을 해야한다. 하지만 %Like% 쿼리에서는 인덱스를 타지 않는다.
+- 검색 쿼리의 종류에 따라 해당 탐색에 적합한 인텍스 자료구조가 다를 수 있다
+- postgresql index type들 (14버전 기준)
+  https://www.postgresql.org/docs/14/indexes-types.html
+
+- 참고 [postgresql_indexes](./postgresql_indexes.md)
+
+  - PostgreSQL provides several index types: B-tree, Hash, GiST, SP-GiST, GIN, BRIN, and the extension bloom.
+  - default : B-tree
+
+- GIN - %LIKE% 검색에 대한 GIN index 효율성 [참고](https://medium.com/vuno-sw-dev/postgresql-gin-%EC%9D%B8%EB%8D%B1%EC%8A%A4%EB%A5%BC-%ED%86%B5%ED%95%9C-like-%EA%B2%80%EC%83%89-%EC%84%B1%EB%8A%A5-%EA%B0%9C%EC%84%A0-3c6b05c7e75f)
 
 - 위의 참고에 따르면
 
@@ -16,22 +26,49 @@
 
   - 검색 창에 입력한 값이 DB에 저장된 값과 완전히 일치하는 경우가 아니라 부분적으로 일치하는 경우에도 조회 되어야 하므로 GIN 인덱스를 사용하는 것이 보다 적합함을 알 수 있습니다.
 
-⇒ pg_trgm 은 3글자 이상만 가능함?
+### pg_trgm, pg_bigm
 
-⇒ 아닌거 같던데??!
+- pg_trgm(https://www.postgresql.org/docs/12/pgtrgm.html)
 
-⇒ 1~2 글자는 seq 검색보다 느리다는 단점이 있음
+  - 글자를 문자열에서 연속된 3개의 문자까지만 가져와서 그룹핑한다. 예를 들면
+  - 'word', 'two words'의 경우 아래의 두 경우로 그룹핑 된다.
+    - {" w"," wo","wor","ord","rd "}.
+    - {" t"," tw","two","wo "," w"," wo","wor","ord","rds","ds "}
 
-### GIN - pg_bigm ? 사용
+  ```bash
+  SELECT strict_word_similarity('word', 'two words'), similarity('word', 'words');
+  strict_word_similarity | similarity
+  ------------------------+------------
+               0.571429 |   0.571429
+  ```
 
-- pg_bigm 공식 문서
-- 활용 문서 [인프런 향로님 블로그](https://jojoldu.tistory.com/590)
+  - 유사도 비교는 위와 같이 할 수 있다.
+  - similarity 함수는 두 번째 문장에서 두 문장의 가장 유사한 범위는 {" w"," wo","wor","ord"} 이기 때문에 유사성이 0.8이다. 앞의 문장인 two는 고려되지 않았다. 실제로도 two가 있든 없든 유사성이 0.8이다.
+  - strict_word_similarity 전체를 비교한다.
+  - 현재는 한글지원도 되는듯 하다
+  - 빠른 유사성 검색을 위해 `GiST, GIN 인덱스를 생성`할 수 있음
+    - Gist는 보다 Gin인덱스가 정확도가 더 좋다. gist는 인덱스가 더 작아서 어느정도 비슷한 유사도 정도만 필요하고 삽입,업데이트가 빈번할 때 좋다
+  - The pg_trgm module provides GiST and GIN index operator classes that allow you to
+    create an index over a text column for the purpose of very fast similarity searches.
+  - LIKE, ILIKE, ~, ~\* and = queries. 등을 지원한다. 부등식은 지원하지 않는다.
+
+- pg_bigm
+  - https://github.com/pgbigm/pg_bigm/blob/REL1_2_STABLE/docs/pg_bigm_en.md\
+  - create 2-gram (bigram) index for faster full text search.
+  - 위의 깃헙에 따르면 두 개의 차이는 아래와 같다
+    ![pg_trgm_pg_bigm](./imgs/pg_trgm_pg_bigm.png)
+
+⇒ pg_tgram -> 1~2 글자는 seq 검색보다 느리다는 단점이 있음
+
+### GIN - pg_bigm 사용
+
+- 활용 문서
+  - [인프런 향로님 블로그](https://jojoldu.tistory.com/590)
+  - https://github.com/pgbigm/pg_bigm/blob/REL1_2_STABLE/docs/pg_bigm_en.md\
 
 ![pg_bigram_향로블로그펌](./imgs/image.png)
 
-- 유사성 검색이 된다
-- 그런데 pg_trgm 으로 extention 설치 후 테스트 해보니,, 한글도 되는데?
-
+- 이제 유사성 검색이 된다
 - Sample query
 
 ```sql
@@ -51,7 +88,7 @@ ORDER BY sml DESC, "roadForSearch";
 **similarity(text, text)**
 
 - 두 text 비교하여 유사도(number)를 return (0~1)
-- 비슷한 함수 word_similarity, strict_word_similarity 도 있는데, 비교 논리가 좀 차이가 있어서 유사도 결과가 다르게 나옴. (근데 크게 차이를 잘 모르겠음.. 알아보자)
+- 비슷한 함수 word_similarity, strict_word_similarity 도 있는데, 비교 논리가 좀 차이가 있어서 유사도 결과가 다르게 나옴.
 
 **text % text**
 
