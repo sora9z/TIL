@@ -42,37 +42,39 @@ Promise.all은 모든 프로미스가 완료될 때까지 결과를 메모리에
 pg-cursor 를 사용하여 배치처리를 하여 read를 하도록 하였다.
 
 ```js
-    const Cursor = require('pg-cursor');
-    // get query를 batch로 가져오는 batchProcess
-    const readBatchProcess = async (insertSize, query, preProcessFunc) => {
-       ... 생략
-      return new Promise((resolve, reject) => {
-        const fetch = () => {
-          dataCursor.read(insertSize, async (err, rows) => {
-            if (err) {
-              await dataCursor.close();
-              await _disconnectDB(client);
-              reject(err);
-            }
+const Cursor = require("pg-cursor");
 
-            if (!rows?.length) { // 더 이상 처리할 데이터가 없을 경우
-              await dataCursor.close();
-              await _disconnectDB(client);
-              resolve(result);
-            } else {
-              let dataList = rows ? [...rows] : [];
-              if (preProcessFunc) {
-                // Data 전처리
-              }
-              result.data.push(...dataList);
-              fetch();
-            }
-          });
-        };
-        fetch();
-      });
-    };
+const readCursor = (cursor, size) => {
+  return new Promise((resolve, reject) => {
+    cursor.read(size, (err, rows) => {
+      if (err) return reject(err);
+      resolve(rows);
+    });
+  });
+};
 
+const readBatchProcess = async (insertSize, query, preProcessFunc) => {
+  ...생략...
+
+  try {
+    let rows;
+
+    do {
+      rows = await readCursor(dataCursor, insertSize);
+
+      if (rows && rows.length) {
+        let dataList = [...rows];
+
+        if (preProcessFunc) {
+          dataList = await preProcessFunc(dataList);
+        }
+
+        result.data.push(...dataList);
+      }
+    } while (rows && rows.length > 0);
+    ...생략...
+  }
+};
 ```
 
 두 번째 문제를 해결하기 위해 Promise.all 대신에 청크 단위로 처리하는 방식을 도입하여 메모리 부족 문제를 해결하고 서버의 안정성을 강화했다.
