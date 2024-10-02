@@ -82,11 +82,7 @@ const readBatchProcess = async (insertSize, query, preProcessFunc) => {
 ```js
 while (data?.length > 0) {
   const chunk = data.splice(0, insertLimit);
-
-  const options = {
-    updateOnDuplicate: data,
-    returnless: true,
-  };
+  ...생략
   await address.createAddress(chunk, options);
 }
 ```
