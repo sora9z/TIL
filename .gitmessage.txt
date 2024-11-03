@@ -10,7 +10,15 @@
 # 여러 줄의 메시지를 작성할 땐 "-"로 구분 (한 줄은 72자 이내)
 
 ################
-# TIL : 새로운 TIL추가
-# UPDATE : 기존 문서 수정
+# TYPE 
+## TIL : 새로운 TIL추가
+## UPDATE : 기존 문서 수정
 ################
+# CATEGORY1 LIST
+## AI
+## BackendDevelopment
+## Book
+## ComputerScience
+## DesignPattern_ProgrammingParadigms
+## Language_Frameworks
 
