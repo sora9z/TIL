@@ -11,3 +11,4 @@
 
 - [1. 컴퓨터 구조 시작하기](./01_start_computer_architecture.md)
 - [2. 데이터](./02_data.md)
+- [3. 명령어](./03_commend.md)
