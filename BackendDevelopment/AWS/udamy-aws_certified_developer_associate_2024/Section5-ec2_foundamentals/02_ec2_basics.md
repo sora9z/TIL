@@ -1,3 +1,5 @@
+[⬅️ BACK ](./README.md)
+
 ## Amazon EC2
 
 - EC2 = Elastic Compute Cloud = Infrastructure as a Service (IaaS)
