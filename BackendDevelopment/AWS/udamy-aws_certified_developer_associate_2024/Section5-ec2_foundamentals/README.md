@@ -6,3 +6,4 @@ https://www.udemy.com/course/aws-certified-developer-associate-dva-c01/?couponCo
 - [02_ec2_basics](./02_ec2_basics.md)
 - [03_ec2_instance_types](./03_ec2_instance_types.md)
 - [04_ec2_security_groups](./04_ec2_security_groups.md)
+- [05_ssh](./05_ssh.md)
