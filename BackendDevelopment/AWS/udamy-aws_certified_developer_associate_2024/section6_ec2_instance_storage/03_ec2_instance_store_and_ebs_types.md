@@ -30,6 +30,8 @@
 
 - https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volume-types.html
 
+- gp2,3 and io가 시험에서 중요하다고 한다.
+
 ### General Purpose SSD
 
 - gp2, gp3
@@ -86,3 +88,19 @@ https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volume-types.html
 
 - HDD
   ![ebs_type_2](./img/ebs_type_2.png)
+
+- 시험에서는 클 틀에서의 차이?를 알면 된다
+  - 데이터베이스를 사용하는 경우 SSD를,높은 처리량, 낮은 비용을 필요로 할 때에는 HDD등
+  - 만약 32,000의 IO가 필요하다면 io1,io2의 nitro ec2가 필요하다 등
+
+# EBS Multi-Attach - io1 / io2 family
+
+![ebs_multi_attach](./img/ebs_multi_attach.png)
+
+- 하나의 EBS볼륨을 같은 AZ에 있는 여러 EC2 인스턴스에 연결하는 것
+- 각 인스턴스는 고성능 볼륨을 위한 읽기 및 쓰기 권한을 갖게된다.
+- use case
+  - 클러스터된 리눅스 응용 프로그램의 경우 더 높은 응용프로개름 가용성을 갖는다.(ex Teradata 또는 응용프로그램이 동시 작성 작업을 관리 하는 경우?)
+- `최대 16개`의 EC2인스턴스를 같은 볼륨을 첨부할 수 있다.
+- 이를 위해서는 cluster-aware(클러스터 인식)을 하는 파일시스템을 사용해야 한다.
+  - not XFS, EXT4..
