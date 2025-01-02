@@ -7,3 +7,7 @@ https://www.udemy.com/course/aws-certified-developer-associate-dva-c01/?couponCo
 - [02_ami](./02_ami.md)
 
 - [03_ec2_instance_store_and_ebs_types](./03_ec2_instance_store_and_ebs_types.md)
+
+- [04_efs](./04_efs.md)
+
+- [05_ebs_efs](./05_ebs_efs.md)
