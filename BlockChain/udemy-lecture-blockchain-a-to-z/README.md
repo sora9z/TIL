@@ -18,3 +18,5 @@
     - 자신만의 스마트 계약 만들기
 
 ```
+
+- [section3-Intuitive-understanding-of-blockchain](./section3-Intuitive-understanding-of-blockchain.md)

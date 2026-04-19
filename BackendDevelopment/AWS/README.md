@@ -4,4 +4,5 @@
 
 - [AWS-EC2_RED_Practice](./AWS-EC2_RED_Practice/AWS-EC2_RED_Practice.md)
 - [AWS-EC2-S3-간략정리](./AWG-EC2-S3-간략정리/AWG-EC2-S3-간략정리.md)
-- [AWS-Wanted-Challenge](./wanted_challenge_aws//README.md)
+- [AWS-Wanted-Challenge](./wanted_challenge_aws/README.md)
+- [udamy-aws_certified_developer_associate_2024](./udamy-aws_certified_developer_associate_2024/README.md)
